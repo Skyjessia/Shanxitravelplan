@@ -19,12 +19,13 @@
   .daynav{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:12px 0;}
   .daynav a{background:#f5edda;border:1px solid #d9c9a3;border-radius:18px;padding:3px 14px;font-size:13px;color:#8b0000;text-decoration:none;font-weight:bold;}
   .daynav a:hover{background:#8b0000;color:#fff;}
-  .panel{background:#fffdf6;border:1px solid #d9c9a3;border-radius:12px;padding:20px 24px;margin-top:22px;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+  .panel{background:#fffdf6;border:1px solid #d9c9a3;border-radius:12px;padding:20px 24px;margin-top:22px;box-shadow:0 2px 8px rgba(0,0,0,.06);scroll-margin-top:64px;}
   .panel h2{color:#8b0000;font-size:21px;border-left:5px solid #c8a24a;padding-left:12px;margin:0 0 14px;letter-spacing:3px;}
   table{width:100%;border-collapse:collapse;font-size:13.5px;}
   th{background:#8b0000;color:#fff;padding:9px;letter-spacing:2px;}
   td{border:1px solid #e0d5b8;padding:10px;vertical-align:top;}
   td.day{background:#f5edda;font-weight:bold;color:#8b0000;text-align:center;white-space:nowrap;}
+  td[id]{scroll-margin-top:70px;} /* 表格行锚点跳转不被吸顶导航遮挡 */
   .hl{color:#8b0000;font-weight:bold;}
   .food{color:#a05a00;font-weight:bold;}
   .walk{color:#2e7031;}
@@ -56,7 +57,7 @@
   .chip2 a{color:#ffd7a0;cursor:pointer;text-decoration:none;font-weight:bold;}
   .mrow,.frow{display:flex;gap:8px;margin-bottom:8px;align-items:center;}
   .frow label{width:52px;font-size:13px;color:#6b5d3f;flex-shrink:0;}
-  .ledger-box input,.ledger-box select{flex:1;border:1px solid #d9c9a3;border-radius:8px;padding:7px 10px;font-size:14px;background:#fff;min-width:0;}
+  .ledger-box input,.ledger-box select{flex:1;border:1px solid #d9c9a3;border-radius:8px;padding:7px 10px;font-size:16px;background:#fff;min-width:0;} /* 16px防iOS聚焦自动放大 */
   .ledger-box button{border:none;border-radius:8px;padding:7px 14px;background:#c8a24a;color:#fff;font-weight:bold;cursor:pointer;font-size:13px;white-space:nowrap;}
   .ledger-box button:hover{background:#8b0000;}
   .ledger-box button.big{width:100%;padding:10px;font-size:15px;background:#8b0000;margin-top:4px;}
@@ -75,6 +76,12 @@
   .catsum{font-size:12.5px;color:#6b5d3f;margin-top:6px;}
   .delf{color:#c0392b;cursor:pointer;font-weight:bold;}
   @media(max-width:700px){.ledger-grid{flex-direction:column;}.stat2 b{font-size:18px;}}
+  /* ===== 本团信息卡（点文字直接编辑） ===== */
+  [contenteditable][data-ph]:empty::before{content:attr(data-ph);color:#b3a687;}
+  [contenteditable]:hover{background:#fdf6e3;}
+  [contenteditable]:focus{outline:2px solid #c8a24a;background:#fff;}
+  /* ===== 地图小屏横滑 ===== */
+  .map-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
   /* ===== 打包清单打勾 ===== */
   .packlist label.pk{display:inline-flex;align-items:center;gap:6px;background:#fbf6ea;border:1px solid #e0d5b8;border-radius:18px;padding:5px 12px;margin:3px 3px;font-size:13.5px;cursor:pointer;user-select:none;transition:.15s;}
   .packlist label.pk input{accent-color:#8b0000;width:16px;height:16px;cursor:pointer;margin:0;}
@@ -96,6 +103,7 @@
 
 <!-- ============ 吸顶导航 ============ -->
 <nav>
+  <a href="#teaminfo">🚄 本团信息</a>
   <a href="#map">🗺️ 线路图</a>
   <a href="#weather">🌡️ 气温穿搭</a>
   <a href="#daily">📅 每日攻略</a>
@@ -106,10 +114,24 @@
 </nav>
 
 <div class="wrap">
+<!-- ============ 本团信息 ============ -->
+<div class="panel" id="teaminfo" style="background:#fff8ec;border-color:#c8a24a;">
+<h2>🚄 本团信息（点文字直接改 · 自动保存）</h2>
+<p class="ledger-tip">📌 集合时间、车次、领队电话全在这 —— 发起人出发前花一分钟填好，改动自动存本机；<b>截图发群里最稳</b>（本页数据不共享，各人手机各自保存）。</p>
+<table>
+  <tr><th style="width:130px">🚆 去程车次</th><td contenteditable="true" data-tk="train_go" data-ph="点击填写：车次 + 发车时间（如 10/1 K1806 22:05 上海→太原）"></td></tr>
+  <tr><th>🚆 回程车次</th><td contenteditable="true" data-tk="train_back" data-ph="点击填写：D9 郑州返沪车次 + 开车时间"></td></tr>
+  <tr><th>⏰ 集合信息</th><td contenteditable="true" data-tk="meet" data-ph="点击填写：几点 · 哪个火车站 · 哪个进站口 · 找谁举旗"></td></tr>
+  <tr><th>📱 领队/导游</th><td contenteditable="true" data-tk="leader" data-ph="点击填写：姓名 + 手机号"></td></tr>
+  <tr><th>🚌 当地车牌</th><td contenteditable="true" data-tk="bus" data-ph="点击填写：旅游车车牌号 + 司机师傅电话"></td></tr>
+  <tr><th>🛏️ 各晚住宿</th><td contenteditable="true" data-tk="hotel" data-ph="点击填写：如 D2 砂河镇 · D3 大同 · D4 平遥古城内 · D6 壶口 · D8 郑州…"></td></tr>
+</table>
+</div>
+
 <!-- ============ 地图 ============ -->
 <div class="panel" id="map">
 <h2>🗺️ 行程线路图（点击站点名直接导航）</h2>
-<svg viewBox="0 0 1050 560" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+<div class="map-scroll"><svg viewBox="0 0 1050 560" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:760px;height:auto;">
   <rect width="1050" height="560" fill="#f7f3e8" rx="10"/>
   <path d="M 470 40 L 520 30 L 555 55 L 575 95 L 610 120 L 645 155 L 668 200 L 660 245
            L 680 290 L 690 340 L 678 390 L 688 435 L 665 480 L 635 515 L 600 540
@@ -117,35 +139,37 @@
            L 352 328 L 338 282 L 332 236 L 342 190 L 362 148 L 390 110 L 420 78 Z"
         fill="#fdf6e3" stroke="#8b0000" stroke-width="2.5"/>
   <text x="505" y="330" font-size="46" fill="#8b0000" opacity="0.18" letter-spacing="12" text-anchor="middle">山 西</text>
-  <path d="M 332 236 Q 318 300 330 360 Q 342 430 368 480 Q 392 525 450 548 Q 540 568 630 545 Q 710 525 745 460"
+  <path d="M 332 236 Q 318 300 330 360 Q 342 430 368 480 Q 392 525 450 548 Q 540 570 630 552 Q 712 530 748 462"
         fill="none" stroke="#4a90d9" stroke-width="4" opacity="0.5"/>
   <text x="300" y="420" font-size="15" fill="#4a90d9" writing-mode="tb">黄 河</text>
   <text x="240" y="120" font-size="15" fill="#999">内蒙古</text>
   <text x="770" y="180" font-size="15" fill="#999">河北</text>
   <text x="780" y="360" font-size="15" fill="#999">河南</text>
   <text x="180" y="330" font-size="15" fill="#999">陕西</text>
-  <path d="M 520 100 L 545 160 L 630 185 L 560 230 L 505 300 L 470 360 L 452 430 L 470 500 L 400 470 L 340 430"
+  <path d="M 530 195 L 590 142 L 560 88 L 540 115 L 498 250 L 462 302 L 306 218 L 322 262 L 308 292 L 372 322 L 386 358 L 415 405 L 615 538"
         fill="none" stroke="#8b0000" stroke-width="3" stroke-dasharray="11 7" stroke-linecap="round"/>
   <g font-size="14">
-    <a href="https://www.amap.com/search?query=太原" target="_blank" rel="noopener"><circle cx="520" cy="100" r="8" fill="#8b0000"/><text x="538" y="96" font-weight="bold" font-size="16" fill="#8b0000">太原 D1-2</text><text x="538" y="113" fill="#666" font-size="12">🍜 刀削面·老陈醋</text></a>
-    <a href="https://www.amap.com/search?query=五台山风景名胜区" target="_blank" rel="noopener"><circle cx="545" cy="160" r="8" fill="#8b0000"/><text x="563" y="156" font-weight="bold" font-size="16" fill="#8b0000">五台山 D2</text><text x="563" y="173" fill="#666" font-size="12">🙏 最冷站·备厚衣</text></a>
-    <a href="https://www.amap.com/search?query=大同市" target="_blank" rel="noopener"><circle cx="630" cy="185" r="8" fill="#8b0000"/><text x="648" y="181" font-weight="bold" font-size="16" fill="#8b0000">大同 D3</text><text x="648" y="198" fill="#666" font-size="12">📷 石窟木塔悬空寺</text></a>
-    <a href="https://www.amap.com/search?query=雁门关景区" target="_blank" rel="noopener"><circle cx="560" cy="230" r="6" fill="#c8a24a"/><text x="576" y="228" fill="#8a6d1f" font-size="13">雁门关 D4</text></a>
-    <a href="https://www.amap.com/search?query=平遥古城" target="_blank" rel="noopener"><circle cx="505" cy="300" r="8" fill="#8b0000"/><text x="523" y="296" font-weight="bold" font-size="16" fill="#8b0000">平遥 D4</text><text x="523" y="313" fill="#666" font-size="12">🏮 夜宿古城</text></a>
-    <a href="https://www.amap.com/search?query=王家大院" target="_blank" rel="noopener"><circle cx="470" cy="360" r="6" fill="#c8a24a"/><text x="486" y="358" fill="#8a6d1f" font-size="13">王家大院 D5</text></a>
-    <a href="https://www.amap.com/search?query=靖边波浪谷" target="_blank" rel="noopener"><circle cx="340" cy="430" r="8" fill="#8b0000"/><text x="300" y="426" font-weight="bold" font-size="16" fill="#8b0000" text-anchor="end">靖边 D5</text><text x="300" y="443" fill="#666" font-size="12" text-anchor="end">🌅 波浪谷看落日</text></a>
-    <a href="https://www.amap.com/search?query=雨岔大峡谷" target="_blank" rel="noopener"><circle cx="330" cy="480" r="6" fill="#c8a24a"/><text x="316" y="478" fill="#8a6d1f" font-size="13" text-anchor="end">雨岔 D6 · 等正午</text></a>
-    <a href="https://www.amap.com/search?query=壶口瀑布" target="_blank" rel="noopener"><circle cx="452" cy="430" r="6" fill="#c8a24a"/><text x="468" y="428" fill="#8a6d1f" font-size="13">壶口瀑布 D7</text></a>
-    <a href="https://www.amap.com/search?query=云丘山冰洞群" target="_blank" rel="noopener"><circle cx="470" cy="500" r="6" fill="#c8a24a"/><text x="486" y="498" fill="#8a6d1f" font-size="13">冰洞-4℃ D7</text></a>
-    <a href="https://www.amap.com/search?query=运城盐湖" target="_blank" rel="noopener"><circle cx="520" cy="530" r="8" fill="#8b0000"/><text x="538" y="526" font-weight="bold" font-size="16" fill="#8b0000">运城 D8</text><text x="538" y="543" fill="#666" font-size="12">🧂 中国死海</text></a>
+    <a href="https://www.amap.com/search?query=太原" target="_blank" rel="noopener"><circle cx="530" cy="195" r="8" fill="#8b0000"/><text x="548" y="191" font-weight="bold" font-size="16" fill="#8b0000">太原 D2</text><text x="548" y="208" fill="#666" font-size="12">🍜 晋祠·刀削面</text></a>
+    <a href="https://www.amap.com/search?query=五台山风景名胜区" target="_blank" rel="noopener"><circle cx="590" cy="142" r="8" fill="#8b0000"/><text x="608" y="138" font-weight="bold" font-size="16" fill="#8b0000">五台山 D2</text><text x="608" y="155" fill="#666" font-size="12">🙏 最冷站·备厚衣</text></a>
+    <a href="https://www.amap.com/search?query=大同市" target="_blank" rel="noopener"><circle cx="560" cy="88" r="8" fill="#8b0000"/><text x="578" y="84" font-weight="bold" font-size="16" fill="#8b0000">大同 D3</text><text x="578" y="101" fill="#666" font-size="12">📷 石窟木塔悬空寺</text></a>
+    <a href="https://www.amap.com/search?query=雁门关景区" target="_blank" rel="noopener"><circle cx="540" cy="115" r="6" fill="#c8a24a"/><text x="556" y="113" fill="#8a6d1f" font-size="13">雁门关 D4</text></a>
+    <a href="https://www.amap.com/search?query=平遥古城" target="_blank" rel="noopener"><circle cx="498" cy="250" r="8" fill="#8b0000"/><text x="516" y="246" font-weight="bold" font-size="16" fill="#8b0000">平遥 D4</text><text x="516" y="263" fill="#666" font-size="12">🏮 夜宿古城</text></a>
+    <a href="https://www.amap.com/search?query=王家大院" target="_blank" rel="noopener"><circle cx="462" cy="302" r="6" fill="#c8a24a"/><text x="478" y="300" fill="#8a6d1f" font-size="13">王家大院 D5</text></a>
+    <a href="https://www.amap.com/search?query=靖边波浪谷" target="_blank" rel="noopener"><circle cx="306" cy="218" r="8" fill="#8b0000"/><text x="288" y="214" font-weight="bold" font-size="16" fill="#8b0000" text-anchor="end">靖边 D5</text><text x="288" y="231" fill="#666" font-size="12" text-anchor="end">🌅 波浪谷看落日</text></a>
+    <a href="https://www.amap.com/search?query=延安枣园革命旧址" target="_blank" rel="noopener"><circle cx="322" cy="262" r="6" fill="#c8a24a"/><text x="338" y="260" fill="#8a6d1f" font-size="13">延安 D6</text></a>
+    <a href="https://www.amap.com/search?query=雨岔大峡谷" target="_blank" rel="noopener"><circle cx="308" cy="292" r="6" fill="#c8a24a"/><text x="292" y="292" fill="#8a6d1f" font-size="13" text-anchor="end">雨岔 D6 · 等正午</text></a>
+    <a href="https://www.amap.com/search?query=壶口瀑布" target="_blank" rel="noopener"><circle cx="372" cy="322" r="6" fill="#c8a24a"/><text x="388" y="320" fill="#8a6d1f" font-size="13">壶口瀑布 D7</text></a>
+    <a href="https://www.amap.com/search?query=云丘山冰洞群" target="_blank" rel="noopener"><circle cx="386" cy="358" r="6" fill="#c8a24a"/><text x="402" y="356" fill="#8a6d1f" font-size="13">冰洞-4℃ D7</text></a>
+    <a href="https://www.amap.com/search?query=运城盐湖" target="_blank" rel="noopener"><circle cx="415" cy="405" r="8" fill="#8b0000"/><text x="397" y="393" font-weight="bold" font-size="16" fill="#8b0000" text-anchor="end">运城 D8</text><text x="397" y="410" fill="#666" font-size="12" text-anchor="end">🧂 中国死海</text></a>
+    <a href="https://www.amap.com/search?query=郑州东站" target="_blank" rel="noopener"><circle cx="615" cy="538" r="8" fill="#8b0000"/><text x="633" y="534" font-weight="bold" font-size="16" fill="#8b0000">郑州 D9</text><text x="633" y="551" fill="#666" font-size="12">🍜 阿五大鲤鱼·夜返沪</text></a>
   </g>
   <g transform="translate(960,90)">
     <circle r="26" fill="none" stroke="#8b0000" stroke-width="2"/>
     <path d="M0 -20 L6 8 L0 3 L-6 8 Z" fill="#8b0000"/>
     <text y="46" text-anchor="middle" font-size="13" fill="#8b0000">北</text>
   </g>
-</svg>
-<p style="font-size:13px;color:#8a7a55;margin:8px 0 0;">💡 线路图上的每个站点名都可以点，直达高德地图导航；下方各景点名称同样可点。</p>
+</svg></div>
+<p style="font-size:13px;color:#8a7a55;margin:8px 0 0;">💡 线路图上的每个站点名都可以点，直达高德地图导航；下方各景点名称同样可点。手机上可左右滑动看全图。</p>
 </div>
 
 <!-- ============ 气温穿搭 ============ -->
@@ -161,8 +185,9 @@
   <tr><td class="day"><a class="poi" href="https://www.baidu.com/s?wd=甘泉雨岔大峡谷天气" target="_blank" rel="noopener">雨岔 D6</a></td><td>17-23℃</td><td>谷内约10℃</td><td class="temp">涉水！防滑运动鞋硬要求</td></tr>
   <tr><td class="day"><a class="poi" href="https://www.baidu.com/s?wd=壶口瀑布天气" target="_blank" rel="noopener">壶口 D7</a></td><td>17-23℃</td><td class="temp">冰洞 -4℃ ❄️</td><td>白天秋装+冰洞羽绒服(可租大衣)</td></tr>
   <tr><td class="day"><a class="poi" href="https://www.baidu.com/s?wd=运城天气" target="_blank" rel="noopener">运城 D8</a></td><td>20-26℃</td><td>12-16℃</td><td>最暖，湖边风大备薄外套</td></tr>
+  <tr><td class="day"><a class="poi" href="https://www.baidu.com/s?wd=郑州天气" target="_blank" rel="noopener">郑州 D9</a></td><td>21-27℃</td><td>14-18℃</td><td>与运城相当，秋装即可</td></tr>
 </table>
-<p>💡 <b>一句话穿衣法</b>：全程"洋葱穿法"——长袖T恤 + 卫衣 + 防风外套。五台山(D2)和冰洞(D7)的厚衣放行李箱最外层！<span style="color:#8a7a55;font-size:12px;">（城市名可点击查实时天气）</span></p>
+<p>💡 <b>一句话穿衣法</b>：全程"洋葱穿法"——长袖T恤 + 卫衣 + 防风外套。五台山(D2)和冰洞(D7)的厚衣放行李箱最外层！<span style="color:#8a7a55;font-size:12px;">（表内气温为10月上旬常年参考，出发前点城市名查实时天气）</span></p>
 <div>
   <span class="chip">🧣 围巾帽子</span><span class="chip">🧤 五台山防寒</span><span class="chip">👟 防滑鞋(雨岔)</span><span class="chip">🧥 羽绒服(冰洞)</span><span class="chip">📱 防水袋(壶口)</span><span class="chip">🧴 防晒霜</span><span class="chip">🆔 身份证(免票必备)</span>
 </div>
@@ -172,7 +197,7 @@
 <div class="panel" id="daily">
 <h2>📅 每日攻略：亮点 · 机位 · 逛吃</h2>
 <div class="daynav">
-  <a href="#d2">D2 五台山</a><a href="#d3">D3 大同</a><a href="#d4">D4 平遥</a><a href="#d5">D5 靖边</a><a href="#d6">D6 延安</a><a href="#d7">D7 壶口</a><a href="#d8">D8 运城</a><a href="#d9">D9 到家</a>
+  <a href="#d1">D1 出发</a><a href="#d2">D2 五台山</a><a href="#d3">D3 大同</a><a href="#d4">D4 平遥</a><a href="#d5">D5 靖边</a><a href="#d6">D6 延安</a><a href="#d7">D7 壶口</a><a href="#d8">D8 运城</a><a href="#d9">D9 郑州</a>
 </div>
 <table>
   <tr>
@@ -183,8 +208,12 @@
     <th>🍜 美食</th>
   </tr>
   <tr>
+    <td class="day" id="d1">D1<br>出发</td>
+    <td colspan="4">🚄 <b>晚乘火车硬卧出发</b>，车上过夜（集合时间/车次见页首「🚄 本团信息」）。厚外套放行李箱最外层，明天一早就用得上。</td>
+  </tr>
+  <tr>
     <td class="day" id="d2">D2<br>五台山</td>
-    <td><span class="hl"><a class="poi" href="https://www.amap.com/search?query=五台山风景名胜区" target="_blank" rel="noopener">四大佛教名山之首</a></span>：<a class="poi" href="https://www.amap.com/search?query=五爷庙" target="_blank" rel="noopener">五爷庙</a>许愿最灵，<a class="poi" href="https://www.amap.com/search?query=塔院寺大白塔" target="_blank" rel="noopener">大白塔</a>全山标志，<a class="poi" href="https://www.amap.com/search?query=龙泉寺" target="_blank" rel="noopener">龙泉寺</a>圣水洗手。</td>
+    <td>上午<span class="hl"><a class="poi" href="https://www.amap.com/search?query=晋祠博物馆" target="_blank" rel="noopener">晋祠</a></span>：宋朝圣母殿+侍女彩塑+鱼沼飞梁，古建活化石；下午<span class="hl"><a class="poi" href="https://www.amap.com/search?query=五台山风景名胜区" target="_blank" rel="noopener">四大佛教名山之首</a></span>：<a class="poi" href="https://www.amap.com/search?query=五爷庙" target="_blank" rel="noopener">五爷庙</a>许愿最灵，<a class="poi" href="https://www.amap.com/search?query=塔院寺大白塔" target="_blank" rel="noopener">大白塔</a>全山标志，<a class="poi" href="https://www.amap.com/search?query=龙泉寺" target="_blank" rel="noopener">龙泉寺</a>圣水洗手。</td>
     <td class="shot">📷 大白塔：<b>塔院寺广场西南角</b>仰拍，白塔+经幡同框，清晨薄雾最禅意。<a class="poi" href="https://www.amap.com/search?query=殊像寺" target="_blank" rel="noopener">殊像寺</a><b>倒坐观音</b>别错过。</td>
     <td class="walk">砂河镇夜市：台蘑、佛珠手串。</td>
     <td class="food">台蘑炖山鸡、素斋、莜面窝窝。</td>
@@ -226,14 +255,17 @@
   </tr>
   <tr>
     <td class="day" id="d8">D8<br>运城</td>
-    <td><span class="hl"><a class="poi" href="https://www.amap.com/search?query=运城盐湖" target="_blank" rel="noopener">运城盐湖</a></span>"中国死海"，0.5亿年彩色湖面。</td>
+    <td><span class="hl"><a class="poi" href="https://www.amap.com/search?query=运城盐湖" target="_blank" rel="noopener">运城盐湖</a></span>"中国死海"，0.5亿年彩色湖面。<b>晚赴郑州</b>，宿郑州（车次见页首「🚄 本团信息」）。</td>
     <td class="shot">📷 盐湖：<b>雨后色彩最浓</b>；长焦拍镁花田埂色块；有航拍更惊艳。顺路<b><a class="poi" href="https://www.amap.com/search?query=解州关帝庙" target="_blank" rel="noopener">解州关帝庙</a></b>(全国最大)。</td>
     <td class="walk">关帝庙琉璃影壁特写。</td>
     <td class="food">解州羊肉泡馍、闻喜煮饼(手信首选)。</td>
   </tr>
   <tr>
-    <td class="day" id="d9">D9<br>到家</td>
-    <td colspan="4">清晨抵达上海，行李装满老陈醋、平遥牛肉和满相机的美照，回家啦～🎉</td>
+    <td class="day" id="d9">D9<br>郑州</td>
+    <td>上午自由活动，睡到自然醒；<b>15:00后</b>二选一：①<span class="hl"><a class="poi" href="https://www.amap.com/search?query=河南博物院" target="_blank" rel="noopener">河南博物院</a></span>人文路线：贾湖骨笛·妇好鸮尊·莲鹤方壶等九大镇院之宝（<b>免费但需提前实名预约</b>，16:30停止入场·周一闭馆）；②<a class="poi" href="https://www.amap.com/search?query=郑州人民公园" target="_blank" rel="noopener">人民公园</a>松弛遛弯。<b>晚饭后乘火车返沪</b>，行程收官🎉。</td>
+    <td class="shot">📷 博物院：<b>妇好鸮尊+莲鹤方壶</b>特写最出片；考古盲盒文创当手信不撞款。</td>
+    <td class="walk">博物院文创店 · 人民公园湖边长椅发呆。</td>
+    <td class="food"><b>阿五黄河大鲤鱼</b>（豫菜头牌）：红烧鲤鱼+鲤鱼焙面，<b>建议提前订位</b>。</td>
   </tr>
 </table>
 </div>
@@ -242,10 +274,11 @@
 <div class="panel" id="cost">
 <h2>💰 费用速览</h2>
 <table>
-  <tr><th style="width:130px">✅ 费用包含</th><td>往返火车硬卧 · 四钻酒店+1晚三钻 · 空调旅游车 · 6早6正餐(餐标30元) · 优秀中文导游</td></tr>
+  <tr><th style="width:130px">✅ 费用包含</th><td>去程火车硬卧 · 返程郑州→上海火车 · 四钻酒店+1晚三钻 · 空调旅游车 · 6早6正餐(餐标30元) · 优秀中文导游</td></tr>
   <tr><th>💳 当地现付</th><td>景区小交通合计<b>约220元</b> + 耳麦<b>100元/人</b>（付导游）</td></tr>
-  <tr><th>🎫 门票自理</th><td>按年龄现场购票：<b>60/65周岁以上多数免票</b>，身份证随身带！具体：五台山135 / 悬空寺15 / 木塔50 / 云冈120 / 雁门关55 / 晋祠80 / 王家大院55 / 波浪谷90 / 雨岔98 / 壶口100 / 冰洞120 <span style="color:#8a7a55;font-size:12px;">（票价以景区当日公示为准，出发前可点上方各景点查询）</span></td></tr>
-  <tr><th>❌ 不含</th><td><a class="plain" href="https://search.damai.cn/search.html?keyword=又见平遥" target="_blank" rel="noopener">《又见平遥》演出</a> · 玻璃桥 · 个人消费 · 意外险 · 五台山⇋大同绕道费40-50元</td></tr>
+  <tr><th>🎫 门票自理</th><td>按年龄现场购票：<b>60/65周岁以上多数免票</b>，身份证随身带！具体：五台山135 / 悬空寺15 / 木塔50 / 云冈120 / 雁门关55 / 晋祠80 / 王家大院55 / 波浪谷90 / 雨岔98 / 壶口100 / 冰洞120 / <b>河南博物院 免费(需预约)</b> <span style="color:#8a7a55;font-size:12px;">（票价以景区当日公示为准，出发前可点上方各景点查询）</span></td></tr>
+  <tr><th>❌ 不含</th><td><a class="plain" href="https://search.damai.cn/search.html?keyword=又见平遥" target="_blank" rel="noopener">《又见平遥》演出</a> · 玻璃桥 · 个人消费 · 意外险 · D9晚餐(阿五自费) · 五台山⇋大同绕道费40-50元</td></tr>
+  <tr><th>⚠️ 国庆提醒</th><td>假期景区<b>实名预约限流</b>：跟团门票由导游统一约，<b>身份证务必随身</b>；《又见平遥》演出票与<b>河南博物院 D9场次</b>假期紧俏，<b>务必尽早自购/预约</b>。</td></tr>
 </table>
 </div>
 
@@ -291,7 +324,7 @@
 <div class="ledger-box" style="margin-top:14px;">
   <h3>🧾 明细（<span id="rCount">0</span>笔）<button onclick="clearAll()" class="mini danger">清空账本</button></h3>
   <table class="ltable" id="recordTable">
-    <tr><th>项目</th><th>分类</th><th>金额</th><th>付款人</th><th></th></tr>
+    <tr><th>项目</th><th>分类</th><th>金额</th><th>付款人</th><th>日期</th><th></th></tr>
   </table>
   <div id="catSummary" class="catsum"></div>
 </div>
@@ -315,6 +348,10 @@
     <label class="pk"><input type="checkbox" data-k="z4"> 充电宝</label>
     <label class="pk"><input type="checkbox" data-k="z5"> 相机+广角</label>
     <label class="pk"><input type="checkbox" data-k="z6"> 雨衣</label>
+    <label class="pk"><input type="checkbox" data-k="z7"> <b>颈枕+耳塞+眼罩(硬卧过夜)</b></label>
+    <label class="pk"><input type="checkbox" data-k="z8"> 零钱现金(小交通+耳麦现付)</label>
+    <label class="pk"><input type="checkbox" data-k="z9"> 保温杯</label>
+    <label class="pk"><input type="checkbox" data-k="z10"> 插线板(硬卧插座紧张)</label>
   </td></tr>
   <tr><th>护肤药品</th><td>
     <label class="pk"><input type="checkbox" data-k="h1"> 防晒霜</label>
@@ -323,6 +360,7 @@
     <label class="pk"><input type="checkbox" data-k="h4"> 晕车药</label>
     <label class="pk"><input type="checkbox" data-k="h5"> 感冒药</label>
     <label class="pk"><input type="checkbox" data-k="h6"> 创可贴</label>
+    <label class="pk"><input type="checkbox" data-k="h7"> 湿巾+备用袜(雨岔涉水)</label>
   </td></tr>
 </table>
 <div class="packbar">
@@ -364,9 +402,11 @@ function addMember(){
   if(state.members.includes(name)){alert('已经有这位团友了');return;}
   state.members.push(name);save();$('mName').value='';render();
 }
-function delMember(n){
-  if(!confirm('移除「'+n+'」？已记账目会保留其名字。'))return;
-  state.members=state.members.filter(m=>m!==n);save();render();
+function delMember(idx){
+  const n=state.members[idx];
+  if(state.records.some(r=>r.payer===n)){alert('「'+n+'」名下还有垫付账目，先在明细里删除TA的记录，再移除团友。');return;}
+  if(!confirm('移除「'+n+'」？'))return;
+  state.members.splice(idx,1);save();render();
 }
 function addRecord(){
   const item=$('fItem').value.trim(),amt=parseFloat($('fAmt').value),payer=$('fPayer').value,cat=$('fCat').value;
@@ -408,7 +448,7 @@ function settleTransfers(rows){
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function render(){
   $('mCount').textContent=state.members.length;
-  $('memberChips').innerHTML=state.members.map(m=>`<span class="chip2">${esc(m)}<a onclick="delMember(${JSON.stringify(m)})" title="移除">✕</a></span>`).join('')||'<span style="font-size:12.5px;color:#8a7a55;">还没有团友，先添加（建议用群里昵称）</span>';
+  $('memberChips').innerHTML=state.members.map((m,idx)=>`<span class="chip2">${esc(m)}<a onclick="delMember(${idx})" title="移除">✕</a></span>`).join('')||'<span style="font-size:12.5px;color:#8a7a55;">还没有团友，先添加（建议用群里昵称）</span>';
   const sel=$('fPayer'),cur=sel.value;
   sel.innerHTML='<option value="">— 选付款人 —</option>'+state.members.map(m=>`<option>${esc(m)}</option>`).join('');
   if([...sel.options].some(o=>o.value===cur))sel.value=cur;
@@ -425,10 +465,12 @@ function render(){
   const tx=settleTransfers(c.rows);
   $('transferList').innerHTML=tx.length?('<b style="color:#2e7031">💸 多退少补（只需'+tx.length+'笔转账）：</b>'+tx.map(t=>`<div>${esc(t.from)} → ${esc(t.to)}　${fmt(t.amt)}</div>`).join('')):(c.n>0?'<div style="color:#8a7a55">账都平了，不需要转账 👌</div>':'');
   $('rCount').textContent=state.records.length;
-  $('recordTable').innerHTML='<tr><th>项目</th><th>分类</th><th>金额</th><th>付款人</th><th></th></tr>'+
-    (state.records.map(r=>`<tr><td style="text-align:left">${esc(r.item)}</td><td>${esc(r.cat)}</td><td>${fmt(r.amt)}</td><td>${esc(r.payer)}</td><td><span class="delf" onclick="delRecord(${r.id})">删</span></td></tr>`).join('')||'<tr><td colspan="5" style="color:#8a7a55">还没记账。旅途中随手记，回来一键结算～</td></tr>');
+  $('recordTable').innerHTML='<tr><th>项目</th><th>分类</th><th>金额</th><th>付款人</th><th>日期</th><th></th></tr>'+
+    (state.records.map(r=>`<tr><td style="text-align:left">${esc(r.item)}</td><td>${esc(r.cat)}</td><td>${fmt(r.amt)}</td><td>${esc(r.payer)}</td><td style="font-size:11px;color:#8a7a55;white-space:nowrap">${esc(r.ts||'')}</td><td><span class="delf" onclick="delRecord(${r.id})">删</span></td></tr>`).join('')||'<tr><td colspan="6" style="color:#8a7a55">还没记账。旅途中随手记，回来一键结算～</td></tr>');
+  const orphans=state.records.filter(r=>!state.members.includes(r.payer));
   const cats={};state.records.forEach(r=>cats[r.cat]=(cats[r.cat]||0)+r.amt);
-  $('catSummary').innerHTML=Object.keys(cats).length?'分类小计：'+Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`${k} ${fmt(v)}`).join(' ｜ '):'';
+  $('catSummary').innerHTML=(orphans.length?'<span style="color:#c0392b;font-weight:bold;">⚠️ 有'+orphans.length+'笔记录的付款人已不在团友名单，TA的垫付不会计入结算——请把TA加回来</span>　':'')
+    +(Object.keys(cats).length?'分类小计：'+Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`${k} ${fmt(v)}`).join(' ｜ '):'');
 }
 function copySummary(){
   const c=calc();if(c.n===0||state.records.length===0){alert('还没有可结算的账');return;}
@@ -454,6 +496,18 @@ document.addEventListener('keydown',e=>{
   if(document.activeElement===$('fAmt')&&e.key==='Enter')addRecord();
 });
 render();
+
+/* ===== 本团信息卡（contenteditable·localStorage自动保存） ===== */
+const TEAM_KEY='sx_trip_team_v1';
+document.querySelectorAll('td[data-tk]').forEach(td=>{
+  const key=TEAM_KEY+'_'+td.dataset.tk;
+  try{const v=localStorage.getItem(key);if(v)td.textContent=v;}catch(e){}
+  td.addEventListener('blur',()=>{
+    try{const t=td.textContent.replace(/\s+/g,' ').trim();
+        if(t)localStorage.setItem(key,t);else localStorage.removeItem(key);
+        td.textContent=t;}catch(e){}
+  });
+});
 
 /* ===== 打包清单打勾（localStorage自动保存） ===== */
 const PACK_KEY='sx_trip_pack_v1';
