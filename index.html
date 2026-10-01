@@ -75,6 +75,17 @@
   .catsum{font-size:12.5px;color:#6b5d3f;margin-top:6px;}
   .delf{color:#c0392b;cursor:pointer;font-weight:bold;}
   @media(max-width:700px){.ledger-grid{flex-direction:column;}.stat2 b{font-size:18px;}}
+  /* ===== 打包清单打勾 ===== */
+  .packlist label.pk{display:inline-flex;align-items:center;gap:6px;background:#fbf6ea;border:1px solid #e0d5b8;border-radius:18px;padding:5px 12px;margin:3px 3px;font-size:13.5px;cursor:pointer;user-select:none;transition:.15s;}
+  .packlist label.pk input{accent-color:#8b0000;width:16px;height:16px;cursor:pointer;margin:0;}
+  .packlist label.pk:hover{border-color:#c8a24a;}
+  .packlist label.pk.pk-done{background:#2e7031;border-color:#2e7031;color:#fff;}
+  .packlist label.pk.pk-done input{accent-color:#7ab55a;}
+  .packbar{display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap;font-size:14px;}
+  .pkbar-track{flex:1;min-width:140px;height:10px;background:#efe6cd;border-radius:6px;overflow:hidden;}
+  .pkbar-fill{height:100%;background:linear-gradient(90deg,#c8a24a,#2e7031);border-radius:6px;transition:width .3s;}
+  .pkreset{border:none;background:#999;color:#fff;border-radius:8px;padding:4px 12px;font-size:12.5px;cursor:pointer;}
+  .pkreset:hover{background:#8b0000;}
 </style>
 </head>
 <body id="top">
@@ -288,12 +299,37 @@
 
 <!-- ============ 打包清单 ============ -->
 <div class="panel" id="pack">
-<h2>🎒 打包清单（出发前打勾）</h2>
-<table>
-  <tr><th style="width:110px">衣物</th><td>☐ 厚外套/轻羽绒（五台山+冰洞）☐ 防风外套 ☐ 红白黄色系拍照衣服 ☐ 舒适步行鞋 ☐ <b>防滑运动鞋(雨岔)</b></td></tr>
-  <tr><th>装备</th><td>☐ 身份证 ☐ 手机广角镜头 ☐ <b>防水袋(壶口)</b> ☐ 充电宝 ☐ 相机+广角 ☐ 雨衣</td></tr>
-  <tr><th>护肤药品</th><td>☐ 防晒霜 ☐ 润唇膏 ☐ 保湿霜 ☐ 晕车药 ☐ 感冒药 ☐ 创可贴</td></tr>
+<h2>🎒 打包清单（点击打勾 · 自动保存）</h2>
+<table class="packlist">
+  <tr><th style="width:110px">衣物</th><td>
+    <label class="pk"><input type="checkbox" data-k="y1"> 厚外套/轻羽绒（五台山+冰洞）</label>
+    <label class="pk"><input type="checkbox" data-k="y2"> 防风外套</label>
+    <label class="pk"><input type="checkbox" data-k="y3"> 红白黄色系拍照衣服</label>
+    <label class="pk"><input type="checkbox" data-k="y4"> 舒适步行鞋</label>
+    <label class="pk"><input type="checkbox" data-k="y5"> <b>防滑运动鞋(雨岔)</b></label>
+  </td></tr>
+  <tr><th>装备</th><td>
+    <label class="pk"><input type="checkbox" data-k="z1"> 身份证</label>
+    <label class="pk"><input type="checkbox" data-k="z2"> 手机广角镜头</label>
+    <label class="pk"><input type="checkbox" data-k="z3"> <b>防水袋(壶口)</b></label>
+    <label class="pk"><input type="checkbox" data-k="z4"> 充电宝</label>
+    <label class="pk"><input type="checkbox" data-k="z5"> 相机+广角</label>
+    <label class="pk"><input type="checkbox" data-k="z6"> 雨衣</label>
+  </td></tr>
+  <tr><th>护肤药品</th><td>
+    <label class="pk"><input type="checkbox" data-k="h1"> 防晒霜</label>
+    <label class="pk"><input type="checkbox" data-k="h2"> 润唇膏</label>
+    <label class="pk"><input type="checkbox" data-k="h3"> 保湿霜</label>
+    <label class="pk"><input type="checkbox" data-k="h4"> 晕车药</label>
+    <label class="pk"><input type="checkbox" data-k="h5"> 感冒药</label>
+    <label class="pk"><input type="checkbox" data-k="h6"> 创可贴</label>
+  </td></tr>
 </table>
+<div class="packbar">
+  <div class="pkbar-track"><div class="pkbar-fill" id="pkBar" style="width:0%"></div></div>
+  <span>已备 <b id="pkDone">0</b> / <span id="pkTotal">0</span> 件</span>
+  <button class="pkreset" onclick="resetPack()">重置</button>
+</div>
 </div>
 
 <!-- ============ 实用链接 ============ -->
@@ -418,6 +454,45 @@ document.addEventListener('keydown',e=>{
   if(document.activeElement===$('fAmt')&&e.key==='Enter')addRecord();
 });
 render();
+
+/* ===== 打包清单打勾（localStorage自动保存） ===== */
+const PACK_KEY='sx_trip_pack_v1';
+let packState=[];
+try{packState=JSON.parse(localStorage.getItem(PACK_KEY)||'[]')||[];}catch(e){}
+function packSync(cb){
+  cb.closest('.pk').classList.toggle('pk-done',cb.checked);
+  packState=[...document.querySelectorAll('.packlist input:checked')].map(x=>x.dataset.k);
+  try{localStorage.setItem(PACK_KEY,JSON.stringify(packState));}catch(e){}
+  const total=document.querySelectorAll('.packlist input').length;
+  const done=packState.length;
+  $('pkDone').textContent=done;
+  $('pkTotal').textContent=total;
+  $('pkBar').style.width=(total?Math.round(done/total*100):0)+'%';
+}
+document.querySelectorAll('.packlist input[type=checkbox]').forEach(cb=>{
+  cb.addEventListener('change',()=>packSync(cb));
+  cb.checked=packState.includes(cb.dataset.k); /* 恢复上次勾选（先全部设好，不逐个触发sync） */
+});
+/* 恢复完成后统一同步一次：写回完整DOM快照，消除逐个恢复的中间态 */
+(function(){
+  document.querySelectorAll('.packlist input').forEach(cb=>cb.closest('.pk').classList.toggle('pk-done',cb.checked));
+  packSync(document.querySelector('.packlist input'));
+})();
+/* 兜底：离开/切后台瞬间把DOM状态快照写入（防任何写入丢失场景） */
+window.addEventListener('beforeunload',()=>{
+  try{localStorage.setItem(PACK_KEY,JSON.stringify([...document.querySelectorAll('.packlist input:checked')].map(x=>x.dataset.k)));}catch(e){}
+});
+document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState==='hidden'){
+    try{localStorage.setItem(PACK_KEY,JSON.stringify([...document.querySelectorAll('.packlist input:checked')].map(x=>x.dataset.k)));}catch(e){}
+  }
+});
+function resetPack(){
+  if(!confirm('清空所有打勾记录？（重新出发时用）'))return;
+  localStorage.removeItem(PACK_KEY);packState=[];
+  document.querySelectorAll('.packlist input[type=checkbox]').forEach(cb=>{cb.checked=false;cb.closest('.pk').classList.remove('pk-done');});
+  $('pkDone').textContent=0;$('pkBar').style.width='0%';
+}
 </script>
 </body>
 </html>
