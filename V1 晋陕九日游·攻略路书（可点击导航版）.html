@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>晋陕九日游·终极攻略路书（可点击版）</title>
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#f7f3e8;font-family:"Microsoft YaHei",sans-serif;color:#333;line-height:1.7;}
+  .wrap{max-width:1100px;margin:0 auto;padding:20px;}
+  header{background:linear-gradient(135deg,#8b0000,#a52a2a);color:#fff;text-align:center;padding:36px 20px 26px;border-radius:0 0 20px 20px;}
+  header h1{margin:0;letter-spacing:10px;font-size:34px;}
+  header p{margin:8px 0 0;opacity:.9;letter-spacing:3px;}
+  /* ===== 吸顶导航 ===== */
+  nav{position:sticky;top:0;z-index:99;background:#8b0000;display:flex;flex-wrap:wrap;justify-content:center;gap:4px;padding:10px 8px;box-shadow:0 2px 10px rgba(0,0,0,.25);}
+  nav a{color:#ffe9c4;text-decoration:none;font-size:14px;padding:6px 14px;border-radius:18px;letter-spacing:1px;transition:.2s;}
+  nav a:hover{background:#a52a2a;color:#fff;}
+  .daynav{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:12px 0;}
+  .daynav a{background:#f5edda;border:1px solid #d9c9a3;border-radius:18px;padding:3px 14px;font-size:13px;color:#8b0000;text-decoration:none;font-weight:bold;}
+  .daynav a:hover{background:#8b0000;color:#fff;}
+  .panel{background:#fffdf6;border:1px solid #d9c9a3;border-radius:12px;padding:20px 24px;margin-top:22px;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+  .panel h2{color:#8b0000;font-size:21px;border-left:5px solid #c8a24a;padding-left:12px;margin:0 0 14px;letter-spacing:3px;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  th{background:#8b0000;color:#fff;padding:9px;letter-spacing:2px;}
+  td{border:1px solid #e0d5b8;padding:10px;vertical-align:top;}
+  td.day{background:#f5edda;font-weight:bold;color:#8b0000;text-align:center;white-space:nowrap;}
+  .hl{color:#8b0000;font-weight:bold;}
+  .food{color:#a05a00;font-weight:bold;}
+  .walk{color:#2e7031;}
+  .shot{color:#1c5a8a;}
+  .temp{color:#c0392b;font-weight:bold;}
+  .chip{display:inline-block;background:#f5edda;border:1px solid #d9c9a3;border-radius:20px;padding:2px 12px;margin:3px;font-size:13px;}
+  /* ===== 链接样式 ===== */
+  a.poi{color:#1c5a8a;text-decoration:none;border-bottom:1px dashed #1c5a8a;}
+  a.poi:hover{color:#8b0000;border-bottom-color:#8b0000;}
+  a.plain{color:#2e7031;text-decoration:none;border-bottom:1px dashed #2e7031;}
+  a.plain:hover{color:#8b0000;border-bottom-color:#8b0000;}
+  .linkpanel a{display:inline-block;background:#fdf6e3;border:1px solid #d9c9a3;border-radius:10px;padding:10px 16px;margin:5px;text-decoration:none;color:#8b0000;font-size:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  .linkpanel a:hover{background:#8b0000;color:#fff;}
+  .linkpanel a small{display:block;color:#8a7a55;font-weight:normal;font-size:12px;}
+  .linkpanel a:hover small{color:#ffe9c4;}
+  #topBtn{position:fixed;right:16px;bottom:20px;background:#8b0000;color:#fff;text-decoration:none;border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 2px 10px rgba(0,0,0,.3);opacity:.85;}
+  #topBtn:hover{opacity:1;}
+  svg a{cursor:pointer;}
+  footer{text-align:center;color:#8a7a55;font-size:13px;padding:26px 0;}
+  @media(max-width:700px){table{font-size:12px;} td,th{padding:6px;} .panel{padding:14px;} nav a{font-size:12px;padding:5px 10px;} header h1{font-size:26px;letter-spacing:6px;}}
+</style>
+</head>
+<body id="top">
+<header>
+  <h1>晋 陕 九 日 游</h1>
+  <p>看什么 · 怎么拍 · 穿什么 · 吃什么 —— 团友随身攻略（点击版）</p>
+</header>
+
+<!-- ============ 吸顶导航 ============ -->
+<nav>
+  <a href="#map">🗺️ 线路图</a>
+  <a href="#weather">🌡️ 气温穿搭</a>
+  <a href="#daily">📅 每日攻略</a>
+  <a href="#cost">💰 费用</a>
+  <a href="#pack">🎒 打包清单</a>
+  <a href="#links">🔗 实用链接</a>
+</nav>
+
+<div class="wrap">
+<!-- ============ 地图 ============ -->
+<div class="panel" id="map">
+<h2>🗺️ 行程线路图（点击站点名直接导航）</h2>
+<svg viewBox="0 0 1050 560" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+  <rect width="1050" height="560" fill="#f7f3e8" rx="10"/>
+  <path d="M 470 40 L 520 30 L 555 55 L 575 95 L 610 120 L 645 155 L 668 200 L 660 245
+           L 680 290 L 690 340 L 678 390 L 688 435 L 665 480 L 635 515 L 600 540
+           555 552 L 505 548 L 465 528 L 438 495 L 418 455 L 395 415 L 372 372
+           L 352 328 L 338 282 L 332 236 L 342 190 L 362 148 L 390 110 L 420 78 Z"
+        fill="#fdf6e3" stroke="#8b0000" stroke-width="2.5"/>
+  <text x="505" y="330" font-size="46" fill="#8b0000" opacity="0.18" letter-spacing="12" text-anchor="middle">山 西</text>
+  <path d="M 332 236 Q 318 300 330 360 Q 342 430 368 480 Q 392 525 450 548 Q 540 568 630 545 Q 710 525 745 460"
+        fill="none" stroke="#4a90d9" stroke-width="4" opacity="0.5"/>
+  <text x="300" y="420" font-size="15" fill="#4a90d9" writing-mode="tb">黄 河</text>
+  <text x="240" y="120" font-size="15" fill="#999">内蒙古</text>
+  <text x="770" y="180" font-size="15" fill="#999">河北</text>
+  <text x="780" y="360" font-size="15" fill="#999">河南</text>
+  <text x="180" y="330" font-size="15" fill="#999">陕西</text>
+  <path d="M 520 100 L 545 160 L 630 185 L 560 230 L 505 300 L 470 360 L 452 430 L 470 500 L 400 470 L 340 430"
+        fill="none" stroke="#8b0000" stroke-width="3" stroke-dasharray="11 7" stroke-linecap="round"/>
+  <g font-size="14">
+    <a href="https://www.amap.com/search?query=太原" target="_blank" rel="noopener"><circle cx="520" cy="100" r="8" fill="#8b0000"/><text x="538" y="96" font-weight="bold" font-size="16" fill="#8b0000">太原 D1-2</text><text x="538" y="113" fill="#666" font-size="12">🍜 刀削面·老陈醋</text></a>
+    <a href="https://www.amap.com/search?query=五台山风景名胜区" target="_blank" rel="noopener"><circle cx="545" cy="160" r="8" fill="#8b0000"/><text x="563" y="156" font-weight="bold" font-size="16" fill="#8b0000">五台山 D2</text><text x="563" y="173" fill="#666" font-size="12">🙏 最冷站·备厚衣</text></a>
+    <a href="https://www.amap.com/search?query=大同市" target="_blank" rel="noopener"><circle cx="630" cy="185" r="8" fill="#8b0000"/><text x="648" y="181" font-weight="bold" font-size="16" fill="#8b0000">大同 D3</text><text x="648" y="198" fill="#666" font-size="12">📷 石窟木塔悬空寺</text></a>
+    <a href="https://www.amap.com/search?query=雁门关景区" target="_blank" rel="noopener"><circle cx="560" cy="230" r="6" fill="#c8a24a"/><text x="576" y="228" fill="#8a6d1f" font-size="13">雁门关 D4</text></a>
+    <a href="https://www.amap.com/search?query=平遥古城" target="_blank" rel="noopener"><circle cx="505" cy="300" r="8" fill="#8b0000"/><text x="523" y="296" font-weight="bold" font-size="16" fill="#8b0000">平遥 D4</text><text x="523" y="313" fill="#666" font-size="12">🏮 夜宿古城</text></a>
+    <a href="https://www.amap.com/search?query=王家大院" target="_blank" rel="noopener"><circle cx="470" cy="360" r="6" fill="#c8a24a"/><text x="486" y="358" fill="#8a6d1f" font-size="13">王家大院 D5</text></a>
+    <a href="https://www.amap.com/search?query=靖边波浪谷" target="_blank" rel="noopener"><circle cx="340" cy="430" r="8" fill="#8b0000"/><text x="300" y="426" font-weight="bold" font-size="16" fill="#8b0000" text-anchor="end">靖边 D5</text><text x="300" y="443" fill="#666" font-size="12" text-anchor="end">🌅 波浪谷看落日</text></a>
+    <a href="https://www.amap.com/search?query=雨岔大峡谷" target="_blank" rel="noopener"><circle cx="330" cy="480" r="6" fill="#c8a24a"/><text x="316" y="478" fill="#8a6d1f" font-size="13" text-anchor="end">雨岔 D6 · 等正午</text></a>
+    <a href="https://www.amap.com/search?query=壶口瀑布" target="_blank" rel="noopener"><circle cx="452" cy="430" r="6" fill="#c8a24a"/><text x="468" y="428" fill="#8a6d1f" font-size="13">壶口瀑布 D7</text></a>
+    <a href="https://www.amap.com/search?query=云丘山冰洞群" target="_blank" rel="noopener"><circle cx="470" cy="500" r="6" fill="#c8a24a"/><text x="486" y="498" fill="#8a6d1f" font-size="13">冰洞-4℃ D7</text></a>
+    <a href="https://www.amap.com/search?query=运城盐湖" target="_blank" rel="noopener"><circle cx="520" cy="530" r="8" fill="#8b0000"/><text x="538" y="526" font-weight="bold" font-size="16" fill="#8b0000">运城 D8</text><text x="538" y="543" fill="#666" font-size="12">🧂 中国死海</text></a>
+  </g>
+  <g transform="translate(960,90)">
+    <circle r="26" fill="none" stroke="#8b0000" stroke-width="2"/>
+    <path d="M0 -20 L6 8 L0 3 L-6 8 Z" fill="#8b0000"/>
+    <text y="46" text-anchor="middle" font-size="13" fill="#8b0000">北</text>
+  </g>
+</svg>
+<p style="font-size:13px;color:#8a7a55;margin:8px 0 0;">💡 线路图上的每个站点名都可以点，直达高德地图导航；下方各景点名称同样可点。</p>
+</div>
+
+<!-- ============ 气温穿搭 ============ -->
+<div class="panel" id="weather">
+<h2>🌡️ 全程气温 & 穿衣总纲</h2>
+<table>
+  <tr><th>站点</th><th>白天</th><th>早晚</th><th>特点</th></tr>
+  <tr><td class="day"><a class="poi" href="https://www.baidu.com/s?wd=太原天气" target="_blank" rel="noopener">太原</a></td><td>18-24℃</td><td>8-12℃</td><td>干燥，早晚凉</td></tr>
+  <tr><td class="day"><a class="poi" href="https://www.baidu.com/s?wd=五台山天气" target="_blank" rel="noopener">五台山 D2</a></td><td>10-18℃</td><td class="temp">2-6℃ ⚠️最冷</td><td>风大，厚外套/轻羽绒必穿</td></tr>
+  <tr><td class="day"><a class="poi" href="https://www.baidu.com/s?wd=大同天气" target="_blank" rel="noopener">大同 D3</a></td><td>16-22℃</td><td>6-10℃</td><td>日照强，防晒墨镜</td></tr>
+  <tr><td class="day"><a class="poi" href="https://www.baidu.com/s?wd=平遥天气" target="_blank" rel="noopener">平遥 D4</a></td><td>19-25℃</td><td>10-14℃</td><td>最舒适，红色系衣服出片</td></tr>
+  <tr><td class="day"><a class="poi" href="https://www.baidu.com/s?wd=靖边天气" target="_blank" rel="noopener">靖边 D5</a></td><td>18-24℃</td><td>8-12℃</td><td>干燥风大，白/蓝/黄撞色出片</td></tr>
+  <tr><td class="day"><a class="poi" href="https://www.baidu.com/s?wd=甘泉雨岔大峡谷天气" target="_blank" rel="noopener">雨岔 D6</a></td><td>17-23℃</td><td>谷内约10℃</td><td class="temp">涉水！防滑运动鞋硬要求</td></tr>
+  <tr><td class="day"><a class="poi" href="https://www.baidu.com/s?wd=壶口瀑布天气" target="_blank" rel="noopener">壶口 D7</a></td><td>17-23℃</td><td class="temp">冰洞 -4℃ ❄️</td><td>白天秋装+冰洞羽绒服(可租大衣)</td></tr>
+  <tr><td class="day"><a class="poi" href="https://www.baidu.com/s?wd=运城天气" target="_blank" rel="noopener">运城 D8</a></td><td>20-26℃</td><td>12-16℃</td><td>最暖，湖边风大备薄外套</td></tr>
+</table>
+<p>💡 <b>一句话穿衣法</b>：全程"洋葱穿法"——长袖T恤 + 卫衣 + 防风外套。五台山(D2)和冰洞(D7)的厚衣放行李箱最外层！<span style="color:#8a7a55;font-size:12px;">（城市名可点击查实时天气）</span></p>
+<div>
+  <span class="chip">🧣 围巾帽子</span><span class="chip">🧤 五台山防寒</span><span class="chip">👟 防滑鞋(雨岔)</span><span class="chip">🧥 羽绒服(冰洞)</span><span class="chip">📱 防水袋(壶口)</span><span class="chip">🧴 防晒霜</span><span class="chip">🆔 身份证(免票必备)</span>
+</div>
+</div>
+
+<!-- ============ 每日攻略 ============ -->
+<div class="panel" id="daily">
+<h2>📅 每日攻略：亮点 · 机位 · 逛吃</h2>
+<div class="daynav">
+  <a href="#d2">D2 五台山</a><a href="#d3">D3 大同</a><a href="#d4">D4 平遥</a><a href="#d5">D5 靖边</a><a href="#d6">D6 延安</a><a href="#d7">D7 壶口</a><a href="#d8">D8 运城</a><a href="#d9">D9 到家</a>
+</div>
+<table>
+  <tr>
+    <th style="width:66px">日程</th>
+    <th style="width:200px">✨ 亮点</th>
+    <th style="width:260px">📷 不容错过</th>
+    <th style="width:180px">🚶 有空逛逛</th>
+    <th>🍜 美食</th>
+  </tr>
+  <tr>
+    <td class="day" id="d2">D2<br>五台山</td>
+    <td><span class="hl"><a class="poi" href="https://www.amap.com/search?query=五台山风景名胜区" target="_blank" rel="noopener">四大佛教名山之首</a></span>：<a class="poi" href="https://www.amap.com/search?query=五爷庙" target="_blank" rel="noopener">五爷庙</a>许愿最灵，<a class="poi" href="https://www.amap.com/search?query=塔院寺大白塔" target="_blank" rel="noopener">大白塔</a>全山标志，<a class="poi" href="https://www.amap.com/search?query=龙泉寺" target="_blank" rel="noopener">龙泉寺</a>圣水洗手。</td>
+    <td class="shot">📷 大白塔：<b>塔院寺广场西南角</b>仰拍，白塔+经幡同框，清晨薄雾最禅意。<a class="poi" href="https://www.amap.com/search?query=殊像寺" target="_blank" rel="noopener">殊像寺</a><b>倒坐观音</b>别错过。</td>
+    <td class="walk">砂河镇夜市：台蘑、佛珠手串。</td>
+    <td class="food">台蘑炖山鸡、素斋、莜面窝窝。</td>
+  </tr>
+  <tr>
+    <td class="day" id="d3">D3<br>大同</td>
+    <td><span class="hl"><a class="poi" href="https://www.amap.com/search?query=悬空寺" target="_blank" rel="noopener">悬空寺</a></span>峭壁悬挂1500年；<span class="hl"><a class="poi" href="https://www.amap.com/search?query=应县木塔" target="_blank" rel="noopener">应县木塔</a></span>纯木无钉；<span class="hl"><a class="poi" href="https://www.amap.com/search?query=云冈石窟" target="_blank" rel="noopener">云冈石窟</a></span>51000余尊大佛。<a class="plain" href="https://www.yungang.org/" target="_blank" rel="noopener">［云冈官网］</a></td>
+    <td class="shot">📷 悬空寺：<b>河对岸免费观景台</b>拍全景，不用花100元登临。木塔：<b>塔后东北角</b>仰拍斗拱。云冈：<b>第20窟大佛偏右30°</b>，上午顺光最庄严。</td>
+    <td class="walk">晚上逛<b>大同古城墙夜景、鼓楼东街</b>。</td>
+    <td class="food">刀削面(发源地！)、羊杂粉汤、浑源凉粉。</td>
+  </tr>
+  <tr>
+    <td class="day" id="d4">D4<br>平遥</td>
+    <td><span class="hl"><a class="poi" href="https://www.amap.com/search?query=雁门关景区" target="_blank" rel="noopener">雁门关</a></span>"一座关城半部华夏史"；夜宿<span class="hl"><a class="poi" href="https://www.amap.com/search?query=平遥古城" target="_blank" rel="noopener">平遥古城</a></span>明清大院。</td>
+    <td class="shot">📷 雁门关：关城上拍<b>匾额+垛口纵深</b>。平遥：<b>市楼黄昏蓝调时刻</b>(日落后30分钟)最出片；日落前上<b>古城墙</b>拍剪影。县衙上午有<b>升堂表演</b>。</td>
+    <td class="walk">夜游明清一条街；<b><a class="plain" href="https://search.damai.cn/search.html?keyword=又见平遥" target="_blank" rel="noopener">《又见平遥》</a></b>演出(自费，强烈推荐)；可租汉服拍照。</td>
+    <td class="food">平遥牛肉、碗托、莜面栲栳栳配老陈醋。</td>
+  </tr>
+  <tr>
+    <td class="day" id="d5">D5<br>靖边</td>
+    <td><span class="hl"><a class="poi" href="https://www.amap.com/search?query=王家大院" target="_blank" rel="noopener">王家大院</a></span>"中国民间故宫"；<span class="hl"><a class="poi" href="https://www.amap.com/search?query=靖边波浪谷" target="_blank" rel="noopener">波浪谷</a></span>红色砂岩如凝固波浪。</td>
+    <td class="shot">📷 王家大院：<b>恒贞堡后围墙制高点</b>俯拍全院。波浪谷：<b>1号景区最高观景台</b>拍S形纹理；<b>落日前1小时</b>红色最饱和；<b>水上丹霞</b>逆光拍倒影。穿白/蓝/黄最撞色！</td>
+    <td class="walk">一线天；玻璃桥50元(自愿)。</td>
+    <td class="food">陕北炖羊肉、荞面饸饹、油馍馍。</td>
+  </tr>
+  <tr>
+    <td class="day" id="d6">D6<br>延安</td>
+    <td><span class="hl"><a class="poi" href="https://www.amap.com/search?query=枣园革命旧址" target="_blank" rel="noopener">枣园旧址</a></span>重温岁月；<span class="hl"><a class="poi" href="https://www.amap.com/search?query=雨岔大峡谷" target="_blank" rel="noopener">雨岔大峡谷</a></span>黄土高原"羚羊谷"。</td>
+    <td class="shot">📷 雨岔：<b>黄金时段只有正午11:30-13:30</b>，阳光直射谷底红岩发光！手机开实况/慢门拍<b>丁达尔光柱</b>；<b><a class="poi" href="https://www.amap.com/search?query=桦树沟峡谷" target="_blank" rel="noopener">桦树沟</a></b>是精华；人多时镜头抬高45°拍岩顶纹理。</td>
+    <td class="walk">晚上住壶口看<b>黄河夜色</b>；延安<b><a class="poi" href="https://www.amap.com/search?query=宝塔山" target="_blank" rel="noopener">宝塔山</a>灯光秀</b>。</td>
+    <td class="food">延安抿节、陕北油糕、洋芋擦擦。</td>
+  </tr>
+  <tr>
+    <td class="day" id="d7">D7<br>壶口</td>
+    <td><span class="hl"><a class="poi" href="https://www.amap.com/search?query=壶口瀑布" target="_blank" rel="noopener">世界最大黄色瀑布</a></span>；<span class="hl"><a class="poi" href="https://www.amap.com/search?query=云丘山冰洞群" target="_blank" rel="noopener">冰洞群</a></span>300万年冰奇观；<a class="poi" href="https://www.amap.com/search?query=塔尔坡古村" target="_blank" rel="noopener">塔尔坡古村</a>民俗。</td>
+    <td class="shot">📷 壶口：<b>山西侧"龙洞"</b>仰拍"黄河之水天上来"；晴天上午<b>彩虹压瀑布</b>；穿红/黄雨衣拍人像。冰洞：<b>蓝色深处广角+剪影</b>。塔尔坡：<b>皮影戏后台探班</b>。</td>
+    <td class="walk">古村看<b>婚俗表演</b>，买<b>云丘山花馍</b>。</td>
+    <td class="food">黄河大鲤鱼、乡宁饸饹面。</td>
+  </tr>
+  <tr>
+    <td class="day" id="d8">D8<br>运城</td>
+    <td><span class="hl"><a class="poi" href="https://www.amap.com/search?query=运城盐湖" target="_blank" rel="noopener">运城盐湖</a></span>"中国死海"，0.5亿年彩色湖面。</td>
+    <td class="shot">📷 盐湖：<b>雨后色彩最浓</b>；长焦拍镁花田埂色块；有航拍更惊艳。顺路<b><a class="poi" href="https://www.amap.com/search?query=解州关帝庙" target="_blank" rel="noopener">解州关帝庙</a></b>(全国最大)。</td>
+    <td class="walk">关帝庙琉璃影壁特写。</td>
+    <td class="food">解州羊肉泡馍、闻喜煮饼(手信首选)。</td>
+  </tr>
+  <tr>
+    <td class="day" id="d9">D9<br>到家</td>
+    <td colspan="4">清晨抵达上海，行李装满老陈醋、平遥牛肉和满相机的美照，回家啦～🎉</td>
+  </tr>
+</table>
+</div>
+
+<!-- ============ 费用 ============ -->
+<div class="panel" id="cost">
+<h2>💰 费用速览</h2>
+<table>
+  <tr><th style="width:130px">✅ 费用包含</th><td>往返火车硬卧 · 四钻酒店+1晚三钻 · 空调旅游车 · 6早6正餐(餐标30元) · 优秀中文导游</td></tr>
+  <tr><th>💳 当地现付</th><td>景区小交通合计<b>约220元</b> + 耳麦<b>100元/人</b>（付导游）</td></tr>
+  <tr><th>🎫 门票自理</th><td>按年龄现场购票：<b>60/65周岁以上多数免票</b>，身份证随身带！具体：五台山135 / 悬空寺15 / 木塔50 / 云冈120 / 雁门关55 / 晋祠80 / 王家大院55 / 波浪谷90 / 雨岔98 / 壶口100 / 冰洞120 <span style="color:#8a7a55;font-size:12px;">（票价以景区当日公示为准，出发前可点上方各景点查询）</span></td></tr>
+  <tr><th>❌ 不含</th><td><a class="plain" href="https://search.damai.cn/search.html?keyword=又见平遥" target="_blank" rel="noopener">《又见平遥》演出</a> · 玻璃桥 · 个人消费 · 意外险 · 五台山⇋大同绕道费40-50元</td></tr>
+</table>
+</div>
+
+<!-- ============ 打包清单 ============ -->
+<div class="panel" id="pack">
+<h2>🎒 打包清单（出发前打勾）</h2>
+<table>
+  <tr><th style="width:110px">衣物</th><td>☐ 厚外套/轻羽绒（五台山+冰洞）☐ 防风外套 ☐ 红白黄色系拍照衣服 ☐ 舒适步行鞋 ☐ <b>防滑运动鞋(雨岔)</b></td></tr>
+  <tr><th>装备</th><td>☐ 身份证 ☐ 手机广角镜头 ☐ <b>防水袋(壶口)</b> ☐ 充电宝 ☐ 相机+广角 ☐ 雨衣</td></tr>
+  <tr><th>护肤药品</th><td>☐ 防晒霜 ☐ 润唇膏 ☐ 保湿霜 ☐ 晕车药 ☐ 感冒药 ☐ 创可贴</td></tr>
+</table>
+</div>
+
+<!-- ============ 实用链接 ============ -->
+<div class="panel linkpanel" id="links">
+<h2>🔗 实用链接（出发前 / 路上用）</h2>
+<a href="https://www.12306.cn/index/" target="_blank" rel="noopener">🚄 12306 购票<small>往返车票 · 候补 · 电子票</small></a>
+<a href="https://www.amap.com/search?query=五台山风景名胜区" target="_blank" rel="noopener">🗺️ 高德地图<small>全景点导航 · 第一站五台山</small></a>
+<a href="https://search.damai.cn/search.html?keyword=又见平遥" target="_blank" rel="noopener">🎫 《又见平遥》购票<small>D4 晚自费 · 强烈推荐提前买</small></a>
+<a href="https://www.yungang.org/" target="_blank" rel="noopener">🗿 云冈石窟官网<small>D3 · 开放时间/门票公告</small></a>
+<a href="https://www.baidu.com/s?wd=五台山天气" target="_blank" rel="noopener">🌤️ 沿途天气<small>点开改城市名即可</small></a>
+</div>
+
+<p style="text-align:center;margin-top:18px;"><a href="#top" style="color:#8b0000;text-decoration:none;">⬆️ 回到顶部</a></p>
+</div>
+
+<a href="#top" id="topBtn" title="回到顶部">⬆</a>
+
+<footer>🏔️ 晋陕九日游 · 祝旅途愉快，出片满满 🎉<br><span style="font-size:11px;">本页所有链接为第三方网站，以官方实时信息为准 · 出行前请再次确认门票与开放时间</span></footer>
+</body>
+</html>
