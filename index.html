@@ -45,6 +45,36 @@
   svg a{cursor:pointer;}
   footer{text-align:center;color:#8a7a55;font-size:13px;padding:26px 0;}
   @media(max-width:700px){table{font-size:12px;} td,th{padding:6px;} .panel{padding:14px;} nav a{font-size:12px;padding:5px 10px;} header h1{font-size:26px;letter-spacing:6px;}}
+  /* ===== 记账模块 ===== */
+  .ledger-tip{font-size:13px;color:#6b5d3f;background:#f5edda;border-radius:8px;padding:8px 12px;margin:0 0 14px;}
+  .ledger-grid{display:flex;gap:16px;flex-wrap:wrap;}
+  .ledger-box{flex:1;min-width:290px;background:#fbf6ea;border:1px solid #e0d5b8;border-radius:10px;padding:14px 16px;}
+  .ledger-box h3{margin:0 0 10px;color:#8b0000;font-size:15px;}
+  .ledger-box hr{border:none;border-top:1px dashed #d9c9a3;margin:14px 0;}
+  .chips{margin-bottom:8px;}
+  .chip2{display:inline-flex;align-items:center;gap:6px;background:#8b0000;color:#ffe9c4;border-radius:16px;padding:3px 10px;margin:2px;font-size:13px;}
+  .chip2 a{color:#ffd7a0;cursor:pointer;text-decoration:none;font-weight:bold;}
+  .mrow,.frow{display:flex;gap:8px;margin-bottom:8px;align-items:center;}
+  .frow label{width:52px;font-size:13px;color:#6b5d3f;flex-shrink:0;}
+  .ledger-box input,.ledger-box select{flex:1;border:1px solid #d9c9a3;border-radius:8px;padding:7px 10px;font-size:14px;background:#fff;min-width:0;}
+  .ledger-box button{border:none;border-radius:8px;padding:7px 14px;background:#c8a24a;color:#fff;font-weight:bold;cursor:pointer;font-size:13px;white-space:nowrap;}
+  .ledger-box button:hover{background:#8b0000;}
+  .ledger-box button.big{width:100%;padding:10px;font-size:15px;background:#8b0000;margin-top:4px;}
+  .ledger-box button.big.copy{background:#2e7031;}
+  .ledger-box button.mini{padding:2px 10px;font-size:12px;background:#a05a00;float:right;}
+  .ledger-box button.mini.danger{background:#999;}
+  .stat2{display:flex;gap:12px;margin-bottom:10px;}
+  .stat2 div{flex:1;background:#8b0000;color:#fff;border-radius:10px;padding:10px;text-align:center;}
+  .stat2 small{display:block;opacity:.8;font-size:12px;}
+  .stat2 b{font-size:22px;}
+  .ltable{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:8px;}
+  .ltable th{background:#c8a24a;padding:6px;color:#fff;}
+  .ltable td{border:1px solid #e8ddc2;padding:6px 8px;text-align:center;}
+  .tlist{font-size:13.5px;}
+  .tlist div{background:#fdf6e3;border-left:4px solid #2e7031;padding:5px 10px;margin:4px 0;border-radius:4px;}
+  .catsum{font-size:12.5px;color:#6b5d3f;margin-top:6px;}
+  .delf{color:#c0392b;cursor:pointer;font-weight:bold;}
+  @media(max-width:700px){.ledger-grid{flex-direction:column;}.stat2 b{font-size:18px;}}
 </style>
 </head>
 <body id="top">
@@ -59,6 +89,7 @@
   <a href="#weather">🌡️ 气温穿搭</a>
   <a href="#daily">📅 每日攻略</a>
   <a href="#cost">💰 费用</a>
+  <a href="#ledger">🧮 记账算账</a>
   <a href="#pack">🎒 打包清单</a>
   <a href="#links">🔗 实用链接</a>
 </nav>
@@ -149,7 +180,7 @@
   </tr>
   <tr>
     <td class="day" id="d3">D3<br>大同</td>
-    <td><span class="hl"><a class="poi" href="https://www.amap.com/search?query=悬空寺" target="_blank" rel="noopener">悬空寺</a></span>峭壁悬挂1500年；<span class="hl"><a class="poi" href="https://www.amap.com/search?query=应县木塔" target="_blank" rel="noopener">应县木塔</a></span>纯木无钉；<span class="hl"><a class="poi" href="https://www.amap.com/search?query=云冈石窟" target="_blank" rel="noopener">云冈石窟</a></span>51000余尊大佛。<a class="plain" href="https://www.yungang.org/" target="_blank" rel="noopener">［云冈官网］</a></td>
+    <td><span class="hl"><a class="poi" href="https://www.amap.com/search?query=悬空寺" target="_blank" rel="noopener">悬空寺</a></span>峭壁悬挂1500年；<span class="hl"><a class="poi" href="https://www.amap.com/search?query=应县木塔" target="_blank" rel="noopener">应县木塔</a></span>纯木无钉；<span class="hl"><a class="poi" href="https://www.amap.com/search?query=云冈石窟" target="_blank" rel="noopener">云冈石窟</a></span>51000余尊大佛。<a class="plain" href="https://baike.baidu.com/item/%E4%BA%91%E5%86%88%E7%9F%B3%E7%AA%9F" target="_blank" rel="noopener">［石窟介绍］</a></td>
     <td class="shot">📷 悬空寺：<b>河对岸免费观景台</b>拍全景，不用花100元登临。木塔：<b>塔后东北角</b>仰拍斗拱。云冈：<b>第20窟大佛偏右30°</b>，上午顺光最庄严。</td>
     <td class="walk">晚上逛<b>大同古城墙夜景、鼓楼东街</b>。</td>
     <td class="food">刀削面(发源地！)、羊杂粉汤、浑源凉粉。</td>
@@ -207,6 +238,54 @@
 </table>
 </div>
 
+<!-- ============ 记账算账 ============ -->
+<div class="panel" id="ledger">
+<h2>🧮 旅行账本（记一笔 · 自动算人均 · 多退少补）</h2>
+<p class="ledger-tip">📌 <b>用法</b>：出发前由一个人（如发起人）<b>先添加全部团友</b> → 旅途中记全团的账（谁垫付的钱就选谁）→ 本页自动算人均和"谁该转谁"，数据保存在本机、关闭页面不丢。结算完点绿色按钮复制清单发群。</p>
+
+<div class="ledger-grid">
+  <div class="ledger-box">
+    <h3>👥 团友（<span id="mCount">0</span>人）<span style="font-weight:normal;font-size:12px;color:#8a7a55;">人均分摊按此人数算</span></h3>
+    <div id="memberChips" class="chips"></div>
+    <div class="mrow">
+      <input id="mName" type="text" placeholder="输入名字，回车或点添加" maxlength="8">
+      <button onclick="addMember()">+ 添加</button>
+    </div>
+    <hr>
+    <h3>✏️ 记一笔</h3>
+    <div class="frow"><label>项目</label><input id="fItem" type="text" placeholder="如：云冈石窟门票" maxlength="20"></div>
+    <div class="frow"><label>金额</label><input id="fAmt" type="number" step="0.01" min="0" placeholder="0.00" inputmode="decimal"></div>
+    <div class="frow"><label>谁付的</label><select id="fPayer"></select></div>
+    <div class="frow"><label>分类</label>
+      <select id="fCat">
+        <option>门票</option><option>餐饮</option><option>住宿</option><option>交通</option><option>购物</option><option>其他</option>
+      </select></div>
+    <button class="big" onclick="addRecord()">＋ 记入账本</button>
+  </div>
+
+  <div class="ledger-box">
+    <h3>📊 结算</h3>
+    <div class="stat2">
+      <div><small>总花费</small><b id="sTotal">¥0.00</b></div>
+      <div><small>人均（<span id="sN">0</span>人）</small><b id="sAvg">¥0.00</b></div>
+    </div>
+    <table class="ltable" id="settleTable">
+      <tr><th>成员</th><th>垫付</th><th>应摊</th><th>结算</th></tr>
+    </table>
+    <div id="transferList" class="tlist"></div>
+    <button class="big copy" onclick="copySummary()">📋 一键复制结算清单（发群用）</button>
+  </div>
+</div>
+
+<div class="ledger-box" style="margin-top:14px;">
+  <h3>🧾 明细（<span id="rCount">0</span>笔）<button onclick="clearAll()" class="mini danger">清空账本</button></h3>
+  <table class="ltable" id="recordTable">
+    <tr><th>项目</th><th>分类</th><th>金额</th><th>付款人</th><th></th></tr>
+  </table>
+  <div id="catSummary" class="catsum"></div>
+</div>
+</div>
+
 <!-- ============ 打包清单 ============ -->
 <div class="panel" id="pack">
 <h2>🎒 打包清单（出发前打勾）</h2>
@@ -223,7 +302,7 @@
 <a href="https://www.12306.cn/index/" target="_blank" rel="noopener">🚄 12306 购票<small>往返车票 · 候补 · 电子票</small></a>
 <a href="https://www.amap.com/search?query=五台山风景名胜区" target="_blank" rel="noopener">🗺️ 高德地图<small>全景点导航 · 第一站五台山</small></a>
 <a href="https://search.damai.cn/search.html?keyword=又见平遥" target="_blank" rel="noopener">🎫 《又见平遥》购票<small>D4 晚自费 · 强烈推荐提前买</small></a>
-<a href="https://www.yungang.org/" target="_blank" rel="noopener">🗿 云冈石窟官网<small>D3 · 开放时间/门票公告</small></a>
+<a href="https://baike.baidu.com/item/%E4%BA%91%E5%86%88%E7%9F%B3%E7%AA%9F" target="_blank" rel="noopener">🗿 云冈石窟介绍<small>D3 · 世界遗产/历史/洞窟看点，车上预习</small></a>
 <a href="https://www.baidu.com/s?wd=五台山天气" target="_blank" rel="noopener">🌤️ 沿途天气<small>点开改城市名即可</small></a>
 </div>
 
@@ -232,6 +311,113 @@
 
 <a href="#top" id="topBtn" title="回到顶部">⬆</a>
 
-<footer>🏔️ 晋陕九日游 · 祝旅途愉快，出片满满 🎉<br><span style="font-size:11px;">本页所有链接为第三方网站，以官方实时信息为准 · 出行前请再次确认门票与开放时间</span></footer>
+<footer>🏔️ 晋陕九日游 · 祝旅途愉快，出片满满 🎉<br><span style="font-size:11px;">本页所有链接为第三方网站，以官方实时信息为准 · 出行前请再次确认门票与开放时间 · 账本数据仅保存在本机浏览器</span></footer>
+
+<script>
+/* ===== 旅行账本（纯前端·localStorage本机保存·无后端无上传） ===== */
+const LS_KEY='sx_trip_ledger_v1';
+let state={members:[],records:[]};
+try{const s=localStorage.getItem(LS_KEY);if(s)state=JSON.parse(s);}catch(e){}
+function save(){try{localStorage.setItem(LS_KEY,JSON.stringify(state));}catch(e){}}
+const $=id=>document.getElementById(id);
+function fmt(fen){return '¥'+(fen/100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');}
+
+function addMember(){
+  const name=$('mName').value.trim();
+  if(!name){alert('先输入名字');return;}
+  if(state.members.includes(name)){alert('已经有这位团友了');return;}
+  state.members.push(name);save();$('mName').value='';render();
+}
+function delMember(n){
+  if(!confirm('移除「'+n+'」？已记账目会保留其名字。'))return;
+  state.members=state.members.filter(m=>m!==n);save();render();
+}
+function addRecord(){
+  const item=$('fItem').value.trim(),amt=parseFloat($('fAmt').value),payer=$('fPayer').value,cat=$('fCat').value;
+  if(!item){alert('写一下项目名，如"云冈石窟门票"');return;}
+  if(!(amt>0)){alert('金额要大于0');return;}
+  if(!payer){alert('先添加团友，再选谁付的钱');return;}
+  state.records.unshift({id:Date.now(),item,amt:Math.round(amt*100),payer,cat,ts:new Date().toLocaleDateString('zh-CN')});
+  save();$('fItem').value='';$('fAmt').value='';render();
+}
+function delRecord(id){state.records=state.records.filter(r=>r.id!==id);save();render();}
+function clearAll(){if(confirm('确定清空全部成员和账目？不可恢复！')){state={members:[],records:[]};save();render();}}
+
+function calc(){
+  const n=state.members.length;
+  const total=state.records.reduce((s,r)=>s+r.amt,0);
+  /* 尾差守恒算法：人均=floor(总/n)，余数(最多n-1分)逐人+1分——Σ应摊≡总花费，Σ净值≡0，转账金额分毫不差 */
+  const per=n>0?Math.floor(total/n):0;
+  const rem=n>0?total-per*n:0;
+  const paid={};state.members.forEach(m=>paid[m]=0);
+  state.records.forEach(r=>{if(paid[r.payer]===undefined)paid[r.payer]=0;paid[r.payer]+=r.amt;});
+  const rows=state.members.map((m,idx)=>{
+    const share=per+(idx<rem?1:0);
+    return {name:m,paid:paid[m]||0,share,net:(paid[m]||0)-share};
+  });
+  return {n,total,per,rows};
+}
+function settleTransfers(rows){
+  const debt=rows.filter(r=>r.net<0).map(r=>({who:r.name,amt:-r.net})).sort((a,b)=>b.amt-a.amt);
+  const cred=rows.filter(r=>r.net>0).map(r=>({who:r.name,amt:r.net})).sort((a,b)=>b.amt-a.amt);
+  const tx=[];let i=0,j=0;
+  while(i<debt.length&&j<cred.length){
+    const p=Math.min(debt[i].amt,cred[j].amt);
+    if(p>0)tx.push({from:debt[i].who,to:cred[j].who,amt:p});
+    debt[i].amt-=p;cred[j].amt-=p;
+    if(debt[i].amt<=0)i++;if(cred[j].amt<=0)j++;
+  }
+  return tx;
+}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function render(){
+  $('mCount').textContent=state.members.length;
+  $('memberChips').innerHTML=state.members.map(m=>`<span class="chip2">${esc(m)}<a onclick="delMember(${JSON.stringify(m)})" title="移除">✕</a></span>`).join('')||'<span style="font-size:12.5px;color:#8a7a55;">还没有团友，先添加（建议用群里昵称）</span>';
+  const sel=$('fPayer'),cur=sel.value;
+  sel.innerHTML='<option value="">— 选付款人 —</option>'+state.members.map(m=>`<option>${esc(m)}</option>`).join('');
+  if([...sel.options].some(o=>o.value===cur))sel.value=cur;
+
+  const c=calc();
+  $('sN').textContent=c.n;
+  $('sTotal').textContent=fmt(c.total);
+  $('sAvg').textContent=fmt(c.per);
+  $('settleTable').innerHTML='<tr><th>成员</th><th>垫付</th><th>应摊</th><th>结算</th></tr>'+
+    c.rows.map(r=>{
+      const tag=r.net>0?`<b style="color:#2e7031">应收 ${fmt(r.net)}</b>`:r.net<0?`<b style="color:#c0392b">应付 ${fmt(-r.net)}</b>`:'<span style="color:#8a7a55">刚好</span>';
+      return `<tr><td>${esc(r.name)}</td><td>${fmt(r.paid)}</td><td>${fmt(r.share)}</td><td>${tag}</td></tr>`;
+    }).join('')+(c.n>1?'<tr><td colspan="4" style="font-size:11px;color:#8a7a55;">人均取整分摊，尾差（几分钱内）已在前几位成员均摊，Σ应收=Σ应付严格守恒</td></tr>':'');
+  const tx=settleTransfers(c.rows);
+  $('transferList').innerHTML=tx.length?('<b style="color:#2e7031">💸 多退少补（只需'+tx.length+'笔转账）：</b>'+tx.map(t=>`<div>${esc(t.from)} → ${esc(t.to)}　${fmt(t.amt)}</div>`).join('')):(c.n>0?'<div style="color:#8a7a55">账都平了，不需要转账 👌</div>':'');
+  $('rCount').textContent=state.records.length;
+  $('recordTable').innerHTML='<tr><th>项目</th><th>分类</th><th>金额</th><th>付款人</th><th></th></tr>'+
+    (state.records.map(r=>`<tr><td style="text-align:left">${esc(r.item)}</td><td>${esc(r.cat)}</td><td>${fmt(r.amt)}</td><td>${esc(r.payer)}</td><td><span class="delf" onclick="delRecord(${r.id})">删</span></td></tr>`).join('')||'<tr><td colspan="5" style="color:#8a7a55">还没记账。旅途中随手记，回来一键结算～</td></tr>');
+  const cats={};state.records.forEach(r=>cats[r.cat]=(cats[r.cat]||0)+r.amt);
+  $('catSummary').innerHTML=Object.keys(cats).length?'分类小计：'+Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`${k} ${fmt(v)}`).join(' ｜ '):'';
+}
+function copySummary(){
+  const c=calc();if(c.n===0||state.records.length===0){alert('还没有可结算的账');return;}
+  const tx=settleTransfers(c.rows);
+  const cats={};state.records.forEach(r=>cats[r.cat]=(cats[r.cat]||0)+r.amt);
+  let txt='【晋陕九日游·账目结算 '+new Date().toLocaleDateString('zh-CN')+'】\n'
+    +'总花费 '+fmt(c.total)+' ｜ 人均 '+fmt(c.per)+'（'+c.n+'人）\n\n—— 谁转谁 ——\n'
+    +(tx.length?tx.map((t,i)=>(i+1)+'. '+t.from+' → '+t.to+'：'+fmt(t.amt)).join('\n'):'已结清，无需转账 👌')
+    +'\n\n—— 每人明细 ——\n'+c.rows.map(r=>r.name+'：垫付 '+fmt(r.paid)+'，应摊 '+fmt(r.share)).join('\n')
+    +'\n\n—— 分类小计 ——\n'+Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([k,v])=>k+' '+fmt(v)).join(' ｜ ')
+    +'\n（共'+state.records.length+'笔）';
+  const done=()=>alert('✅ 已复制！去微信粘贴给团友吧');
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(()=>fallbackCopy(txt,done));}
+  else fallbackCopy(txt,done);
+}
+function fallbackCopy(txt,done){
+  const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';
+  document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done();}catch(e){alert('复制失败，请手动长按选择文本');}
+  document.body.removeChild(ta);
+}
+document.addEventListener('keydown',e=>{
+  if(document.activeElement===$('mName')&&e.key==='Enter')addMember();
+  if(document.activeElement===$('fAmt')&&e.key==='Enter')addRecord();
+});
+render();
+</script>
 </body>
 </html>
