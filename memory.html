@@ -215,7 +215,9 @@ function doUpload(sl,f,file){
 }
 function fileToB64(file){
   return new Promise(function(res,rej){
-    if(file.size>100*1024*1024){toast('视频超100MB，GitHub拒收，发对话给Leo');rej('stop');return;}
+    var mb=Math.round(file.size/1024/1024);
+    if(mb>25){toast('视频'+mb+'MB——手机直传不稳，直接发给Leo');rej('stop');return;}
+    if(mb>8){toast('视频'+mb+'MB，尝试中…失败的话发给Leo更稳');}
     var rd=new FileReader();rd.onload=function(){res(rd.result.split(',')[1]);};rd.onerror=rej;rd.readAsDataURL(file);
   });
 }
