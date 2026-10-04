@@ -33,12 +33,13 @@ nav a.on{background:#fff;color:#8a5a1f;border-color:#fff}
 .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}
 .slot{position:relative;border-radius:10px;overflow:hidden;background:#f1e9d8;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center}
 .slot img,.slot video{width:100%;height:100%;object-fit:cover;display:block}
+.vslot video{object-fit:contain !important}
 .slot b{position:absolute;bottom:0;left:0;right:0;font-size:10px;color:#9a8f78;text-align:center;padding:2px 0;background:rgba(250,246,238,.85);letter-spacing:.5px}
 .slot.empty{border:1.5px dashed #d8c9a8;background:repeating-linear-gradient(45deg,#f7f1e2,#f7f1e2 8px,#f3ecdb 8px,#f3ecdb 16px)}
 .slot.empty::after{content:"⬆️ 上传 "attr(data-f);font-size:10px;color:#a8996f;text-align:center;padding:0 4px}
 .slot.empty b{display:none}
 .vgrid{grid-template-columns:1fr;}
-.vslot{aspect-ratio:16/9}
+.vslot{aspect-ratio:9/16;max-height:72vh;background:#000}
 .exportbar{position:sticky;bottom:12px;display:flex;justify-content:center;margin-top:6px}
 .exportbar button{background:var(--gold);color:#fff;border:none;border-radius:22px;padding:9px 22px;font-size:14px;font-weight:bold;box-shadow:0 4px 14px rgba(180,130,40,.35);cursor:pointer}
 #toast{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:#3a352f;color:#fff;padding:8px 18px;border-radius:20px;font-size:13px;opacity:0;transition:.25s;pointer-events:none}
@@ -84,13 +85,13 @@ footer a{color:var(--gold)}
 <div class="dblock-body"><span class="dlabel">✏️ D1的故事</span>
 <div class="dtext" contenteditable="true" data-mk="2026shanxi_d1" data-ph="点这里写点什么：当时的心情、谁说了好笑的话、看到了什么……">夜车直奔太原，旅行的性价比一下子拉满——旅游列车车厢干净，卧铺带隔断，一人一格小天地，舒服得很。火车摇晃着出城，睡一觉醒来就是五台山的山风：省下一晚房钱，赚回一整个白天。</div></div>
 <div class="pgrid"><div class="slot u" onclick="pickUpload(this)" data-f="p01.jpg"><img src="images/memory/2026-shanxi/p01.jpg" loading="lazy" alt="p01.jpg" onerror="slotEmpty(this)"><b>p01.jpg</b><span class="plus">＋</span></div></div>
-<div class="pgrid vgrid"><div class="slot vslot u" onclick="pickUpload(this)" data-f="v01.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v01.mp4" onerror="slotEmpty(this)"></video><b>v01.mp4</b><span class="plus">＋</span></div></div>
+
 
 </div>
 <div class="dblock" style="--dc:var(--d2)">
 <div class="dhead"><span class="dbadge">D2</span><b>五台山 · 显通寺-塔院寺-殊像寺-龙泉寺</b>
 </div>
-<div class="pgrid vgrid"><div class="slot vslot u" onclick="pickUpload(this)" data-f="v02.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v02.mp4" onerror="slotEmpty(this)"></video><b>v02.mp4</b><span class="plus">＋</span></div></div>
+<div class="pgrid vgrid"><div class="slot vslot u" onclick="pickUpload(this)" data-f="v02.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v02.mp4" onerror="slotEmpty(this)"></video><b>v02.mp4 · 五台山</b><span class="plus">＋</span></div></div>
 <div class="dblock-body"><span class="dlabel">✏️ D2的故事</span>
 <div class="dtext" contenteditable="true" data-mk="2026shanxi_d2" data-ph="点这里写点什么：当时的心情、谁说了好笑的话、看到了什么……"></div></div>
 <div class="pgrid"><div class="slot u" onclick="pickUpload(this)" data-f="p02.jpg"><img src="images/memory/2026-shanxi/p02.jpg" loading="lazy" alt="p02.jpg" onerror="slotEmpty(this)"><b>p02.jpg</b><span class="plus">＋</span></div><div class="slot u" onclick="pickUpload(this)" data-f="p03.jpg"><img src="images/memory/2026-shanxi/p03.jpg" loading="lazy" alt="p03.jpg" onerror="slotEmpty(this)"><b>p03.jpg</b><span class="plus">＋</span></div><div class="slot u" onclick="pickUpload(this)" data-f="p04.jpg"><img src="images/memory/2026-shanxi/p04.jpg" loading="lazy" alt="p04.jpg" onerror="slotEmpty(this)"><b>p04.jpg</b><span class="plus">＋</span></div></div>
@@ -100,7 +101,7 @@ footer a{color:var(--gold)}
 <div class="dblock-body"><span class="dlabel">✏️ D3的故事</span>
 <div class="dtext" contenteditable="true" data-mk="2026shanxi_d3" data-ph="点这里写点什么：当时的心情、谁说了好笑的话、看到了什么……"></div></div>
 <div class="pgrid"><div class="slot u" onclick="pickUpload(this)" data-f="p05.jpg"><img src="images/memory/2026-shanxi/p05.jpg" loading="lazy" alt="p05.jpg" onerror="slotEmpty(this)"><b>p05.jpg</b><span class="plus">＋</span></div><div class="slot u" onclick="pickUpload(this)" data-f="p06.jpg"><img src="images/memory/2026-shanxi/p06.jpg" loading="lazy" alt="p06.jpg" onerror="slotEmpty(this)"><b>p06.jpg</b><span class="plus">＋</span></div><div class="slot u" onclick="pickUpload(this)" data-f="p07.jpg"><img src="images/memory/2026-shanxi/p07.jpg" loading="lazy" alt="p07.jpg" onerror="slotEmpty(this)"><b>p07.jpg</b><span class="plus">＋</span></div></div>
-<div class="pgrid vgrid"><div class="slot vslot u" onclick="pickUpload(this)" data-f="v03.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v03.mp4" onerror="slotEmpty(this)"></video><b>v03.mp4</b><span class="plus">＋</span></div></div>
+<div class="pgrid vgrid"><div class="slot vslot u" onclick="pickUpload(this)" data-f="v03.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v03.mp4" onerror="slotEmpty(this)"></video><b>v03.mp4 · 龙门石窟</b><span class="plus">＋</span></div></div>
 
 </div>
 <div class="dblock" style="--dc:var(--d4)">
@@ -109,7 +110,7 @@ footer a{color:var(--gold)}
 <div class="dblock-body"><span class="dlabel">✏️ D4的故事</span>
 <div class="dtext" contenteditable="true" data-mk="2026shanxi_d4" data-ph="点这里写点什么：当时的心情、谁说了好笑的话、看到了什么……"></div></div>
 <div class="pgrid"><div class="slot u" onclick="pickUpload(this)" data-f="p08.jpg"><img src="images/memory/2026-shanxi/p08.jpg" loading="lazy" alt="p08.jpg" onerror="slotEmpty(this)"><b>p08.jpg</b><span class="plus">＋</span></div><div class="slot u" onclick="pickUpload(this)" data-f="p09.jpg"><img src="images/memory/2026-shanxi/p09.jpg" loading="lazy" alt="p09.jpg" onerror="slotEmpty(this)"><b>p09.jpg</b><span class="plus">＋</span></div><div class="slot u" onclick="pickUpload(this)" data-f="p10.jpg"><img src="images/memory/2026-shanxi/p10.jpg" loading="lazy" alt="p10.jpg" onerror="slotEmpty(this)"><b>p10.jpg</b><span class="plus">＋</span></div></div>
-<div class="pgrid vgrid"><div class="slot vslot u" onclick="pickUpload(this)" data-f="v04.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v04.mp4" onerror="slotEmpty(this)"></video><b>v04.mp4</b><span class="plus">＋</span></div></div>
+<div class="pgrid vgrid"><div class="slot vslot u" onclick="pickUpload(this)" data-f="v04.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v04.mp4" onerror="slotEmpty(this)"></video><b>v04.mp4 · 平遥的早晚</b><span class="plus">＋</span></div></div>
 </div>
 <div class="dblock" style="--dc:var(--d5)">
 <div class="dhead"><span class="dbadge">D5</span><b>王家大院-靖边波浪谷</b></div>
@@ -125,15 +126,15 @@ footer a{color:var(--gold)}
 <div class="dblock-body"><span class="dlabel">✏️ D6的故事</span>
 <div class="dtext" contenteditable="true" data-mk="2026shanxi_d6" data-ph="点这里写点什么：当时的心情、谁说了好笑的话、看到了什么……"></div></div>
 <div class="pgrid"><div class="slot u" onclick="pickUpload(this)" data-f="p13.jpg"><img src="images/memory/2026-shanxi/p13.jpg" loading="lazy" alt="p13.jpg" onerror="slotEmpty(this)"><b>p13.jpg</b><span class="plus">＋</span></div><div class="slot u" onclick="pickUpload(this)" data-f="p14.jpg"><img src="images/memory/2026-shanxi/p14.jpg" loading="lazy" alt="p14.jpg" onerror="slotEmpty(this)"><b>p14.jpg</b><span class="plus">＋</span></div><div class="slot u" onclick="pickUpload(this)" data-f="p15.jpg"><img src="images/memory/2026-shanxi/p15.jpg" loading="lazy" alt="p15.jpg" onerror="slotEmpty(this)"><b>p15.jpg</b><span class="plus">＋</span></div></div>
-<div class="pgrid vgrid"><div class="slot vslot u" onclick="pickUpload(this)" data-f="v06.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v06.mp4" onerror="slotEmpty(this)"></video><b>v06.mp4</b><span class="plus">＋</span></div></div>
+<div class="pgrid vgrid"><div class="slot vslot u" onclick="pickUpload(this)" data-f="v06.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v06.mp4" onerror="slotEmpty(this)"></video><b>v06.mp4 · 雨岔大峡谷</b><span class="plus">＋</span></div></div>
 </div>
 <div class="dblock" style="--dc:var(--d7)">
 <div class="dhead"><span class="dbadge">D7</span><b>壶口瀑布-云丘山冰洞-塔尔坡</b></div>
 <div class="dblock-body"><span class="dlabel">✏️ D7的故事</span>
 <div class="dtext" contenteditable="true" data-mk="2026shanxi_d7" data-ph="点这里写点什么：当时的心情、谁说了好笑的话、看到了什么……"></div></div>
 <div class="pgrid"><div class="slot u" onclick="pickUpload(this)" data-f="p16.jpg"><img src="images/memory/2026-shanxi/p16.jpg" loading="lazy" alt="p16.jpg" onerror="slotEmpty(this)"><b>p16.jpg</b><span class="plus">＋</span></div><div class="slot u" onclick="pickUpload(this)" data-f="p17.jpg"><img src="images/memory/2026-shanxi/p17.jpg" loading="lazy" alt="p17.jpg" onerror="slotEmpty(this)"><b>p17.jpg</b><span class="plus">＋</span></div></div><div class="slot u" onclick="pickUpload(this)" data-f="p19.jpg"><img src="images/memory/2026-shanxi/p19.jpg" loading="lazy" alt="p19.jpg" onerror="slotEmpty(this)"><b>p19.jpg</b><span class="plus">＋</span></div><div class="slot u" onclick="pickUpload(this)" data-f="p20.jpg"><img src="images/memory/2026-shanxi/p20.jpg" loading="lazy" alt="p20.jpg" onerror="slotEmpty(this)"><b>p20.jpg</b><span class="plus">＋</span></div>
-<div class="pgrid vgrid"><div class="slot vslot u" onclick="pickUpload(this)" data-f="v07.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v07.mp4" onerror="slotEmpty(this)"></video><b>v07.mp4</b><span class="plus">＋</span></div></div>
-<div class="pgrid vgrid"><div class="slot vslot u" onclick="pickUpload(this)" data-f="v10.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v10.mp4" onerror="slotEmpty(this)"></video><b>v10.mp4</b><span class="plus">＋</span></div></div>
+<div class="pgrid vgrid"><div class="slot vslot u" onclick="pickUpload(this)" data-f="v07.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v07.mp4" onerror="slotEmpty(this)"></video><b>v07.mp4 · 壶口咆哮</b><span class="plus">＋</span></div></div>
+<div class="pgrid vgrid"><div class="slot vslot u" onclick="pickUpload(this)" data-f="v10.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v10.mp4" onerror="slotEmpty(this)"></video><b>v10.mp4 · 云丘山</b><span class="plus">＋</span></div></div>
 
 </div>
 <div class="dblock" style="--dc:var(--d8)">
@@ -142,7 +143,7 @@ footer a{color:var(--gold)}
 <div class="dblock-body"><span class="dlabel">✏️ D8的故事</span>
 <div class="dtext" contenteditable="true" data-mk="2026shanxi_d8" data-ph="点这里写点什么：当时的心情、谁说了好笑的话、看到了什么……"></div></div>
 <div class="pgrid"><div class="slot u" onclick="pickUpload(this)" data-f="p18.jpg"><img src="images/memory/2026-shanxi/p18.jpg" loading="lazy" alt="p18.jpg" onerror="slotEmpty(this)"><b>p18.jpg</b><span class="plus">＋</span></div></div>
-<div class="pgrid vgrid"><div class="slot vslot u" onclick="pickUpload(this)" data-f="v08.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v08.mp4" onerror="slotEmpty(this)"></video><b>v08.mp4</b><span class="plus">＋</span></div></div>
+<div class="pgrid vgrid"><div class="slot vslot u" onclick="pickUpload(this)" data-f="v08.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v08.mp4" onerror="slotEmpty(this)"></video><b>v08.mp4 · 阿五招牌菜</b><span class="plus">＋</span></div></div>
 
 
 </div>
