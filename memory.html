@@ -82,7 +82,7 @@ footer a{color:var(--gold)}
 <div class="dblock" style="--dc:var(--d1)">
 <div class="dhead"><span class="dbadge">D1</span><b>出发 · 上海→太原</b></div>
 <div class="dblock-body"><span class="dlabel">✏️ D1的故事</span>
-<div class="dtext" contenteditable="true" data-mk="2026shanxi_d1" data-ph="点这里写点什么：当时的心情、谁说了好笑的话、看到了什么……"></div></div>
+<div class="dtext" contenteditable="true" data-mk="2026shanxi_d1" data-ph="点这里写点什么：当时的心情、谁说了好笑的话、看到了什么……">夜车直奔太原，旅行的性价比一下子拉满——旅游列车车厢干净，卧铺带隔断，一人一格小天地，舒服得很。火车摇晃着出城，睡一觉醒来就是五台山的山风：省下一晚房钱，赚回一整个白天。</div></div>
 <div class="pgrid"><div class="slot u" onclick="pickUpload(this)" data-f="p01.jpg"><img src="images/memory/2026-shanxi/p01.jpg" loading="lazy" alt="p01.jpg" onerror="slotEmpty(this)"><b>p01.jpg</b><span class="plus">＋</span></div></div>
 
 </div>
@@ -149,7 +149,7 @@ function slotEmpty(el){
 document.querySelectorAll('[contenteditable][data-mk]').forEach(function(el){
   var k='sx_memory_'+el.dataset.mk;
   var v=localStorage.getItem(k);if(v)el.innerHTML=v;
-  el.addEventListener('blur',function(){localStorage.setItem(k,el.innerHTML)});
+  el.addEventListener('blur',function(){var t=el.innerHTML.trim();if(t===''){localStorage.removeItem(k);}else{localStorage.setItem(k,el.innerHTML);}});
 });
 function copyAll(){
   var parts=[];
