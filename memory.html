@@ -1,1 +1,141 @@
-/home/z/my-project/travel/memory.html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>旅行回忆录 · 慢慢走，慢慢记</title>
+<style>
+:root{--bg:#faf6ee;--card:#fff;--ink:#3a352f;--sub:#8a8378;--gold:#c8a24a;--line:#e8dcc4;--d1:#8d9db6;--d2:#79a88a;--d3:#a8927c;--d4:#c08a68;--d5:#c4a05e;--d6:#a08cb0;--d7:#7fa0b8;--d8:#c78d8d;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+.hero{text-align:center;padding:38px 16px 26px;background:linear-gradient(160deg,#f3d9b0,#e8b98a 55%,#d99a75);color:#fff;border-radius:0 0 26px 26px}
+.hero h1{font-size:34px;letter-spacing:8px;text-shadow:0 2px 8px rgba(120,70,20,.3)}
+.hero p{margin-top:10px;font-size:14px;opacity:.95;letter-spacing:2px}
+nav{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+nav a{text-decoration:none;color:#fff;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.45);border-radius:20px;padding:5px 16px;font-size:13px}
+.chap{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 18px;margin:22px 0;box-shadow:0 3px 14px rgba(160,120,50,.08)}
+.chap-head{border-bottom:2px dashed var(--line);padding-bottom:12px;margin-bottom:14px}
+.chap-head h2{font-size:22px;color:#9a6b2f}
+.chap-head .meta{font-size:13px;color:var(--sub);margin-top:4px}
+.route{font-size:12.5px;color:#9a6b2f;background:#fdf6e8;border-radius:10px;padding:6px 12px;margin-top:8px;display:inline-block}
+h3.sec{font-size:15px;letter-spacing:2px;color:var(--gold);margin:20px 0 10px;border-left:4px solid var(--gold);padding-left:10px}
+.dblock{background:#fffdf8;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0}
+.dblock .dlabel{font-weight:bold;font-size:13.5px;color:var(--dc,#9a6b2f);margin-bottom:4px}
+[contenteditable]{outline:none;min-height:44px;font-size:14.5px}
+[contenteditable]:empty::before{content:attr(data-ph);color:#c9bfa8}
+[contenteditable]:focus{background:#fff9ea;border-radius:6px}
+.save-hint{font-size:11px;color:#b8ad9a;margin-top:4px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+@media(max-width:520px){.grid{grid-template-columns:repeat(2,1fr)}}
+.slot{position:relative;border-radius:10px;overflow:hidden;background:#f4ecdc;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center}
+.slot img,.slot video{width:100%;height:100%;object-fit:cover;display:block}
+.slot .fname{font-size:11px;color:#b8ad9a;letter-spacing:1px}
+.slot.empty{border:1.5px dashed #d8c9a8;background:#faf4e4;flex-direction:column;gap:3px}
+.slot.empty::before{content:"⬆️";font-size:18px}
+.slot.empty .fname{color:#c9a75a;font-weight:bold}
+.vslots{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:520px){.vslots{grid-template-columns:1fr}}
+.toolbar{display:flex;gap:8px;margin:14px 0 4px;flex-wrap:wrap}
+.btn{border:none;border-radius:10px;padding:8px 16px;font-size:13px;cursor:pointer;font-weight:bold}
+.btn.gold{background:var(--gold);color:#fff}
+.btn.ghost{background:#fff;color:#9a6b2f;border:1.5px solid var(--gold)}
+footer{text-align:center;font-size:12px;color:var(--sub);padding:30px 0 40px}
+#toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);background:#3a352f;color:#fff;padding:9px 22px;border-radius:22px;font-size:13px;opacity:0;transition:.3s;pointer-events:none}
+#toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>旅 行 回 忆 录</h1>
+  <p>慢慢走，慢慢记 —— 等老了翻开，还能听见当时的风</p>
+  <nav><a href="index.html">📘 晋陕攻略页</a><a href="#c2026shanxi">🏔️ 2026 晋陕八日</a></nav>
+</div>
+
+<div class="wrap">
+
+<!-- ══════════ 章节模板说明（HTML注释·复制本块改trip-id即可新增旅行） ══════════
+     新旅行三步：①复制整个 <section class="chap"> 块 ②改标题/日期/route ③所有 data-mk 与 src 里的 trip-id 换成新目录名（如 2027-yunnan）
+     照片位增删：复制一行 <div class="slot">…，改 data-f / src 的编号
+═══════════════════════════════════════════════════════════════════════ -->
+
+<section class="chap" id="c2026shanxi">
+  <div class="chap-head">
+    <h2>🏔️ 2026 · 晋陕八日</h2>
+    <div class="meta">10月上旬 · 跟团 · 与家人同行</div>
+    <div class="route">太原 → 五台山 → 大同 → 平遥 → 靖边 → 延安 → 壶口 → 运城 → 郑州</div>
+  </div>
+
+  <h3 class="sec">✏️ 每天的故事（点一下就能写，自动保存在本机）</h3>
+  <div class="toolbar">
+    <button class="btn gold" onclick="copyAll()">📋 复制全文（发给Leo固化永久保存）</button>
+    <button class="btn ghost" onclick="if(confirm('清空本机草稿？固化过的内容不受影响')){document.querySelectorAll('[data-mk]').forEach(e=>{localStorage.removeItem('sx_memory_'+e.dataset.mk);e.innerHTML=''})}">🗑️ 清空草稿</button>
+  </div>
+  <div class="dblock" style="--dc:var(--d1)"><div class="dlabel">D1 · 出发 · 上海→太原</div><div contenteditable="true" data-mk="2026shanxi_d1" data-ph="点击写下：出发那天的心情、火车上的事……"></div></div>
+  <div class="dblock" style="--dc:var(--d2)"><div class="dlabel">D2 · 五台山 · 显通寺/塔院寺/殊像寺/龙泉寺 · 素斋一盏明灯</div><div contenteditable="true" data-mk="2026shanxi_d2" data-ph="点击写下：大白塔的铜铃声、顺时针绕塔时的许愿……"></div></div>
+  <div class="dblock" style="--dc:var(--d3)"><div class="dlabel">D3 · 悬空寺 → 应县木塔 → 云冈石窟 · 咱妈烀饼</div><div contenteditable="true" data-mk="2026shanxi_d3" data-ph="点击写下：悬空寺排队的清晨、第20窟大佛抬头的那一刻……"></div></div>
+  <div class="dblock" style="--dc:var(--d4)"><div class="dlabel">D4 · 雁门关 → 晋祠 → 平遥 · 信义久 · 德朝阁</div><div contenteditable="true" data-mk="2026shanxi_d4" data-ph="点击写下：雁门关的风、《又见平遥》散场后的街……"></div></div>
+  <div class="dblock" style="--dc:var(--d5)"><div class="dlabel">D5 · 王家大院 → 波浪谷 · 落日前1小时</div><div contenteditable="true" data-mk="2026shanxi_d5" data-ph="点击写下：凝固的红色波浪、落日把石头点燃的瞬间……"></div></div>
+  <div class="dblock" style="--dc:var(--d6)"><div class="dlabel">D6 · 枣园 → 豆腐镇 → 雨岔大峡谷 · 宿大禹山庄窑洞</div><div contenteditable="true" data-mk="2026shanxi_d6" data-ph="点击写下：正午谷底的丁达尔光柱、窑洞里的第一晚……"></div></div>
+  <div class="dblock" style="--dc:var(--d7)"><div class="dlabel">D7 · 壶口瀑布 → 云丘山冰洞 → 塔尔坡 · 冰洞免费羽绒服</div><div contenteditable="true" data-mk="2026shanxi_d7" data-ph="点击写下：黄河之水天上来、零下4度的蓝色冰洞……"></div></div>
+  <div class="dblock" style="--dc:var(--d8)"><div class="dlabel">D8 · 运城盐湖 → 二七广场 → 河南博物院 · 22:00返沪</div><div contenteditable="true" data-mk="2026shanxi_d8" data-ph="点击写下：盐湖的颜色、博物院的镇院之宝、回家的火车……"></div></div>
+  <div class="save-hint">💾 每个框点击后直接打字，失焦自动存本机。<b>永久保存</b>：定期点「复制全文」发到微信/发给Leo，固化进网页后换手机也不丢。</div>
+
+  <h3 class="sec">📷 照片（按文件名传进仓库 images/memory/2026-shanxi/ 即自动出现）</h3>
+  <div class="grid">
+    <div class="slot" data-f="p01.jpg"><img loading="lazy" src="images/memory/2026-shanxi/p01.jpg" alt="p01" onerror="slotEmpty(this)"><b class="fname">p01.jpg</b></div>
+    <div class="slot" data-f="p02.jpg"><img loading="lazy" src="images/memory/2026-shanxi/p02.jpg" alt="p02" onerror="slotEmpty(this)"><b class="fname">p02.jpg</b></div>
+    <div class="slot" data-f="p03.jpg"><img loading="lazy" src="images/memory/2026-shanxi/p03.jpg" alt="p03" onerror="slotEmpty(this)"><b class="fname">p03.jpg</b></div>
+    <div class="slot" data-f="p04.jpg"><img loading="lazy" src="images/memory/2026-shanxi/p04.jpg" alt="p04" onerror="slotEmpty(this)"><b class="fname">p04.jpg</b></div>
+    <div class="slot" data-f="p05.jpg"><img loading="lazy" src="images/memory/2026-shanxi/p05.jpg" alt="p05" onerror="slotEmpty(this)"><b class="fname">p05.jpg</b></div>
+    <div class="slot" data-f="p06.jpg"><img loading="lazy" src="images/memory/2026-shanxi/p06.jpg" alt="p06" onerror="slotEmpty(this)"><b class="fname">p06.jpg</b></div>
+    <div class="slot" data-f="p07.jpg"><img loading="lazy" src="images/memory/2026-shanxi/p07.jpg" alt="p07" onerror="slotEmpty(this)"><b class="fname">p07.jpg</b></div>
+    <div class="slot" data-f="p08.jpg"><img loading="lazy" src="images/memory/2026-shanxi/p08.jpg" alt="p08" onerror="slotEmpty(this)"><b class="fname">p08.jpg</b></div>
+    <div class="slot" data-f="p09.jpg"><img loading="lazy" src="images/memory/2026-shanxi/p09.jpg" alt="p09" onerror="slotEmpty(this)"><b class="fname">p09.jpg</b></div>
+    <div class="slot" data-f="p10.jpg"><img loading="lazy" src="images/memory/2026-shanxi/p10.jpg" alt="p10" onerror="slotEmpty(this)"><b class="fname">p10.jpg</b></div>
+    <div class="slot" data-f="p11.jpg"><img loading="lazy" src="images/memory/2026-shanxi/p11.jpg" alt="p11" onerror="slotEmpty(this)"><b class="fname">p11.jpg</b></div>
+    <div class="slot" data-f="p12.jpg"><img loading="lazy" src="images/memory/2026-shanxi/p12.jpg" alt="p12" onerror="slotEmpty(this)"><b class="fname">p12.jpg</b></div>
+    <div class="slot" data-f="p13.jpg"><img loading="lazy" src="images/memory/2026-shanxi/p13.jpg" alt="p13" onerror="slotEmpty(this)"><b class="fname">p13.jpg</b></div>
+    <div class="slot" data-f="p14.jpg"><img loading="lazy" src="images/memory/2026-shanxi/p14.jpg" alt="p14" onerror="slotEmpty(this)"><b class="fname">p14.jpg</b></div>
+    <div class="slot" data-f="p15.jpg"><img loading="lazy" src="images/memory/2026-shanxi/p15.jpg" alt="p15" onerror="slotEmpty(this)"><b class="fname">p15.jpg</b></div>
+    <div class="slot" data-f="p16.jpg"><img loading="lazy" src="images/memory/2026-shanxi/p16.jpg" alt="p16" onerror="slotEmpty(this)"><b class="fname">p16.jpg</b></div>
+    <div class="slot" data-f="p17.jpg"><img loading="lazy" src="images/memory/2026-shanxi/p17.jpg" alt="p17" onerror="slotEmpty(this)"><b class="fname">p17.jpg</b></div>
+    <div class="slot" data-f="p18.jpg"><img loading="lazy" src="images/memory/2026-shanxi/p18.jpg" alt="p18" onerror="slotEmpty(this)"><b class="fname">p18.jpg</b></div>
+  </div>
+  <div class="save-hint">上传后文件名必须完全一致（p01.jpg…p18.jpg），图会自动填进对应格子；想换某张就覆盖同名文件。</div>
+
+  <h3 class="sec">🎬 视频（v01.mp4 / v02.mp4 / v03.mp4，单个<100MB）</h3>
+  <div class="vslots">
+    <div class="slot" data-f="v01.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v01.mp4" onerror="slotEmpty(this)"><b class="fname">v01.mp4</b></video><b class="fname">v01.mp4</b></div>
+    <div class="slot" data-f="v02.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v02.mp4" onerror="slotEmpty(this)"><b class="fname">v02.mp4</b></video><b class="fname">v02.mp4</b></div>
+    <div class="slot" data-f="v03.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v03.mp4" onerror="slotEmpty(this)"><b class="fname">v03.mp4</b></video><b class="fname">v03.mp4</b></div>
+  </div>
+  <div class="save-hint">💡 提示：壶口瀑布的水雾、雨岔的光柱、《又见平遥》散场——这些最适合拍成视频留下来。</div>
+</section>
+
+<footer>📖 旅行回忆录 · 第一章：2026 晋陕八日<br>以后每去过一个地方，这里就多一章 —— 慢慢写，不着急</footer>
+</div>
+<div id="toast"></div>
+<script>
+function slotEmpty(el){var p=el.parentElement;if(p)p.classList.add('empty');}
+document.querySelectorAll('[contenteditable][data-mk]').forEach(function(el){
+  var k='sx_memory_'+el.dataset.mk;
+  var v=localStorage.getItem(k);if(v)el.innerHTML=v;
+  el.addEventListener('blur',function(){localStorage.setItem(k,el.innerHTML)});
+});
+function copyAll(){
+  var parts=[];
+  document.querySelectorAll('.dblock').forEach(function(b){
+    var label=b.querySelector('.dlabel').textContent;
+    var txt=b.querySelector('[contenteditable]').innerText.trim();
+    parts.push('【'+label+'】\n'+(txt||'（还没写）'));
+  });
+  var txt=parts.join('\n\n');
+  (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){toast('全文已复制，发给Leo固化')}).catch(function(){
+    var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();toast('全文已复制');
+  });
+}
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},2200)}
+</script>
+</body>
+</html>
