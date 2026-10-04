@@ -45,10 +45,30 @@ nav a.on{background:#fff;color:#8a5a1f;border-color:#fff}
 #toast.show{opacity:.95}
 footer{text-align:center;color:var(--sub);font-size:12px;padding:26px 0 34px}
 footer a{color:var(--gold)}
+.slot.u{cursor:pointer}
+.slot.u .plus{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:rgba(200,162,74,.92);color:#fff;font-size:15px;font-weight:bold;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,.25);z-index:2}
+.slot.busy{opacity:.6;pointer-events:none}
+.slot.busy::after{content:"上传中…";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(250,246,238,.78);color:#9a6b2f;font-size:12px;font-weight:bold;z-index:3}
+#gear{position:fixed;top:12px;right:12px;width:36px;height:36px;border-radius:50%;background:rgba(60,40,15,.5);color:#fff;border:1px solid rgba(255,255,255,.6);font-size:16px;cursor:pointer;backdrop-filter:blur(4px);z-index:50}
+#setup{position:fixed;inset:0;background:rgba(40,30,15,.45);display:none;align-items:center;justify-content:center;z-index:99;padding:20px}
+#setup.show{display:flex}
+#setup .box{background:#fff;border-radius:16px;padding:20px;max-width:420px;width:100%}
+#setup h3{font-size:16px;margin-bottom:8px;color:#9a6b2f}
+#setup p{font-size:12px;color:#8a8378;margin-bottom:10px}
+#setup input{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;font-size:12px;margin-bottom:10px;word-break:break-all}
+#setup .row{display:flex;gap:8px}
+#setup button{flex:1;border:none;border-radius:10px;padding:9px 0;font-weight:bold;cursor:pointer}
 @media(max-width:520px){.pgrid{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:27px;letter-spacing:5px}}
 </style>
 </head>
 <body>
+<button id="gear" onclick="openSetup()" title="上传口令设置">⚙️</button>
+<div id="setup"><div class="box">
+<h3>⚙️ 上传口令（GitHub Token）</h3>
+<p>只需设置一次（存在本手机，不公开）。获取：手机浏览器开 <b>github.com/settings/personal-access-tokens/new</b> → Token name随意 → Expiration选7天 → Repository access选 <b>Only select repositories</b> → 勾 <b>Shanxitravelplan</b> → Permissions 里 <b>Contents 选 Read and write</b> → Generate token → 复制整串粘到下面：</p>
+<input id="tokin" placeholder="粘贴 token（github_pat_ 开头）">
+<div class="row"><button style="background:#c8a24a;color:#fff" onclick="saveTok()">保存</button><button style="background:#eee;color:#666" onclick="document.getElementById('setup').classList.remove('show')">关闭</button></div>
+</div></div>
 <header class="hero">
 <h1>旅 行 回 忆 录</h1>
 <p>慢慢走，慢慢记——老了翻开，还能听见当时的风。</p>
@@ -63,56 +83,56 @@ footer a{color:var(--gold)}
 <div class="dhead"><span class="dbadge">D1</span><b>出发 · 上海→太原</b></div>
 <div class="dblock-body"><span class="dlabel">✏️ D1的故事</span>
 <div class="dtext" contenteditable="true" data-mk="2026shanxi_d1" data-ph="点这里写点什么：当时的心情、谁说了好笑的话、看到了什么……"></div></div>
-<div class="pgrid"><div class="slot" data-f="p01.jpg"><img src="images/memory/2026-shanxi/p01.jpg" loading="lazy" alt="p01.jpg" onerror="slotEmpty(this)"><b>p01.jpg</b></div></div>
+<div class="pgrid"><div class="slot u" " data-f="p01.jpg"><img src="images/memory/2026-shanxi/p01.jpg" loading="lazy" alt="p01.jpg" onerror="slotEmpty(this)"><b>p01.jpg</b><span class="plus">＋</span></div></div>
 
 </div>
 <div class="dblock" style="--dc:var(--d2)">
 <div class="dhead"><span class="dbadge">D2</span><b>五台山 · 显通寺-塔院寺-殊像寺-龙泉寺</b></div>
 <div class="dblock-body"><span class="dlabel">✏️ D2的故事</span>
 <div class="dtext" contenteditable="true" data-mk="2026shanxi_d2" data-ph="点这里写点什么：当时的心情、谁说了好笑的话、看到了什么……"></div></div>
-<div class="pgrid"><div class="slot" data-f="p02.jpg"><img src="images/memory/2026-shanxi/p02.jpg" loading="lazy" alt="p02.jpg" onerror="slotEmpty(this)"><b>p02.jpg</b></div><div class="slot" data-f="p03.jpg"><img src="images/memory/2026-shanxi/p03.jpg" loading="lazy" alt="p03.jpg" onerror="slotEmpty(this)"><b>p03.jpg</b></div><div class="slot" data-f="p04.jpg"><img src="images/memory/2026-shanxi/p04.jpg" loading="lazy" alt="p04.jpg" onerror="slotEmpty(this)"><b>p04.jpg</b></div></div>
-<div class="pgrid vgrid"><div class="slot vslot" data-f="v01.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v01.mp4" onerror="slotEmpty(this)"></video><b>v01.mp4</b></div></div>
+<div class="pgrid"><div class="slot u" " data-f="p02.jpg"><img src="images/memory/2026-shanxi/p02.jpg" loading="lazy" alt="p02.jpg" onerror="slotEmpty(this)"><b>p02.jpg</b><span class="plus">＋</span></div><div class="slot u" " data-f="p03.jpg"><img src="images/memory/2026-shanxi/p03.jpg" loading="lazy" alt="p03.jpg" onerror="slotEmpty(this)"><b>p03.jpg</b><span class="plus">＋</span></div><div class="slot u" " data-f="p04.jpg"><img src="images/memory/2026-shanxi/p04.jpg" loading="lazy" alt="p04.jpg" onerror="slotEmpty(this)"><b>p04.jpg</b><span class="plus">＋</span></div></div>
+<div class="pgrid vgrid"><div class="slot u"  vslot" data-f="v01.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v01.mp4" onerror="slotEmpty(this)"></video><b>v01.mp4</b><span class="plus">＋</span></div></div>
 </div>
 <div class="dblock" style="--dc:var(--d3)">
 <div class="dhead"><span class="dbadge">D3</span><b>大同 · 悬空寺-应县木塔-云冈石窟</b></div>
 <div class="dblock-body"><span class="dlabel">✏️ D3的故事</span>
 <div class="dtext" contenteditable="true" data-mk="2026shanxi_d3" data-ph="点这里写点什么：当时的心情、谁说了好笑的话、看到了什么……"></div></div>
-<div class="pgrid"><div class="slot" data-f="p05.jpg"><img src="images/memory/2026-shanxi/p05.jpg" loading="lazy" alt="p05.jpg" onerror="slotEmpty(this)"><b>p05.jpg</b></div><div class="slot" data-f="p06.jpg"><img src="images/memory/2026-shanxi/p06.jpg" loading="lazy" alt="p06.jpg" onerror="slotEmpty(this)"><b>p06.jpg</b></div><div class="slot" data-f="p07.jpg"><img src="images/memory/2026-shanxi/p07.jpg" loading="lazy" alt="p07.jpg" onerror="slotEmpty(this)"><b>p07.jpg</b></div></div>
+<div class="pgrid"><div class="slot u" " data-f="p05.jpg"><img src="images/memory/2026-shanxi/p05.jpg" loading="lazy" alt="p05.jpg" onerror="slotEmpty(this)"><b>p05.jpg</b><span class="plus">＋</span></div><div class="slot u" " data-f="p06.jpg"><img src="images/memory/2026-shanxi/p06.jpg" loading="lazy" alt="p06.jpg" onerror="slotEmpty(this)"><b>p06.jpg</b><span class="plus">＋</span></div><div class="slot u" " data-f="p07.jpg"><img src="images/memory/2026-shanxi/p07.jpg" loading="lazy" alt="p07.jpg" onerror="slotEmpty(this)"><b>p07.jpg</b><span class="plus">＋</span></div></div>
 
 </div>
 <div class="dblock" style="--dc:var(--d4)">
 <div class="dhead"><span class="dbadge">D4</span><b>雁门关-晋祠-平遥古城 ·《又见平遥》</b></div>
 <div class="dblock-body"><span class="dlabel">✏️ D4的故事</span>
 <div class="dtext" contenteditable="true" data-mk="2026shanxi_d4" data-ph="点这里写点什么：当时的心情、谁说了好笑的话、看到了什么……"></div></div>
-<div class="pgrid"><div class="slot" data-f="p08.jpg"><img src="images/memory/2026-shanxi/p08.jpg" loading="lazy" alt="p08.jpg" onerror="slotEmpty(this)"><b>p08.jpg</b></div><div class="slot" data-f="p09.jpg"><img src="images/memory/2026-shanxi/p09.jpg" loading="lazy" alt="p09.jpg" onerror="slotEmpty(this)"><b>p09.jpg</b></div><div class="slot" data-f="p10.jpg"><img src="images/memory/2026-shanxi/p10.jpg" loading="lazy" alt="p10.jpg" onerror="slotEmpty(this)"><b>p10.jpg</b></div></div>
-<div class="pgrid vgrid"><div class="slot vslot" data-f="v02.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v02.mp4" onerror="slotEmpty(this)"></video><b>v02.mp4</b></div></div>
+<div class="pgrid"><div class="slot u" " data-f="p08.jpg"><img src="images/memory/2026-shanxi/p08.jpg" loading="lazy" alt="p08.jpg" onerror="slotEmpty(this)"><b>p08.jpg</b><span class="plus">＋</span></div><div class="slot u" " data-f="p09.jpg"><img src="images/memory/2026-shanxi/p09.jpg" loading="lazy" alt="p09.jpg" onerror="slotEmpty(this)"><b>p09.jpg</b><span class="plus">＋</span></div><div class="slot u" " data-f="p10.jpg"><img src="images/memory/2026-shanxi/p10.jpg" loading="lazy" alt="p10.jpg" onerror="slotEmpty(this)"><b>p10.jpg</b><span class="plus">＋</span></div></div>
+<div class="pgrid vgrid"><div class="slot u"  vslot" data-f="v02.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v02.mp4" onerror="slotEmpty(this)"></video><b>v02.mp4</b><span class="plus">＋</span></div></div>
 </div>
 <div class="dblock" style="--dc:var(--d5)">
 <div class="dhead"><span class="dbadge">D5</span><b>王家大院-靖边波浪谷</b></div>
 <div class="dblock-body"><span class="dlabel">✏️ D5的故事</span>
 <div class="dtext" contenteditable="true" data-mk="2026shanxi_d5" data-ph="点这里写点什么：当时的心情、谁说了好笑的话、看到了什么……"></div></div>
-<div class="pgrid"><div class="slot" data-f="p11.jpg"><img src="images/memory/2026-shanxi/p11.jpg" loading="lazy" alt="p11.jpg" onerror="slotEmpty(this)"><b>p11.jpg</b></div><div class="slot" data-f="p12.jpg"><img src="images/memory/2026-shanxi/p12.jpg" loading="lazy" alt="p12.jpg" onerror="slotEmpty(this)"><b>p12.jpg</b></div></div>
+<div class="pgrid"><div class="slot u" " data-f="p11.jpg"><img src="images/memory/2026-shanxi/p11.jpg" loading="lazy" alt="p11.jpg" onerror="slotEmpty(this)"><b>p11.jpg</b><span class="plus">＋</span></div><div class="slot u" " data-f="p12.jpg"><img src="images/memory/2026-shanxi/p12.jpg" loading="lazy" alt="p12.jpg" onerror="slotEmpty(this)"><b>p12.jpg</b><span class="plus">＋</span></div></div>
 
 </div>
 <div class="dblock" style="--dc:var(--d6)">
 <div class="dhead"><span class="dbadge">D6</span><b>延安枣园-雨岔大峡谷</b></div>
 <div class="dblock-body"><span class="dlabel">✏️ D6的故事</span>
 <div class="dtext" contenteditable="true" data-mk="2026shanxi_d6" data-ph="点这里写点什么：当时的心情、谁说了好笑的话、看到了什么……"></div></div>
-<div class="pgrid"><div class="slot" data-f="p13.jpg"><img src="images/memory/2026-shanxi/p13.jpg" loading="lazy" alt="p13.jpg" onerror="slotEmpty(this)"><b>p13.jpg</b></div><div class="slot" data-f="p14.jpg"><img src="images/memory/2026-shanxi/p14.jpg" loading="lazy" alt="p14.jpg" onerror="slotEmpty(this)"><b>p14.jpg</b></div><div class="slot" data-f="p15.jpg"><img src="images/memory/2026-shanxi/p15.jpg" loading="lazy" alt="p15.jpg" onerror="slotEmpty(this)"><b>p15.jpg</b></div></div>
-<div class="pgrid vgrid"><div class="slot vslot" data-f="v03.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v03.mp4" onerror="slotEmpty(this)"></video><b>v03.mp4</b></div></div>
+<div class="pgrid"><div class="slot u" " data-f="p13.jpg"><img src="images/memory/2026-shanxi/p13.jpg" loading="lazy" alt="p13.jpg" onerror="slotEmpty(this)"><b>p13.jpg</b><span class="plus">＋</span></div><div class="slot u" " data-f="p14.jpg"><img src="images/memory/2026-shanxi/p14.jpg" loading="lazy" alt="p14.jpg" onerror="slotEmpty(this)"><b>p14.jpg</b><span class="plus">＋</span></div><div class="slot u" " data-f="p15.jpg"><img src="images/memory/2026-shanxi/p15.jpg" loading="lazy" alt="p15.jpg" onerror="slotEmpty(this)"><b>p15.jpg</b><span class="plus">＋</span></div></div>
+<div class="pgrid vgrid"><div class="slot u"  vslot" data-f="v03.mp4"><video controls preload="none" src="images/memory/2026-shanxi/v03.mp4" onerror="slotEmpty(this)"></video><b>v03.mp4</b><span class="plus">＋</span></div></div>
 </div>
 <div class="dblock" style="--dc:var(--d7)">
 <div class="dhead"><span class="dbadge">D7</span><b>壶口瀑布-云丘山冰洞-塔尔坡</b></div>
 <div class="dblock-body"><span class="dlabel">✏️ D7的故事</span>
 <div class="dtext" contenteditable="true" data-mk="2026shanxi_d7" data-ph="点这里写点什么：当时的心情、谁说了好笑的话、看到了什么……"></div></div>
-<div class="pgrid"><div class="slot" data-f="p16.jpg"><img src="images/memory/2026-shanxi/p16.jpg" loading="lazy" alt="p16.jpg" onerror="slotEmpty(this)"><b>p16.jpg</b></div><div class="slot" data-f="p17.jpg"><img src="images/memory/2026-shanxi/p17.jpg" loading="lazy" alt="p17.jpg" onerror="slotEmpty(this)"><b>p17.jpg</b></div></div>
+<div class="pgrid"><div class="slot u" " data-f="p16.jpg"><img src="images/memory/2026-shanxi/p16.jpg" loading="lazy" alt="p16.jpg" onerror="slotEmpty(this)"><b>p16.jpg</b><span class="plus">＋</span></div><div class="slot u" " data-f="p17.jpg"><img src="images/memory/2026-shanxi/p17.jpg" loading="lazy" alt="p17.jpg" onerror="slotEmpty(this)"><b>p17.jpg</b><span class="plus">＋</span></div></div>
 
 </div>
 <div class="dblock" style="--dc:var(--d8)">
 <div class="dhead"><span class="dbadge">D8</span><b>运城盐湖-郑州二七广场-河南博物院</b></div>
 <div class="dblock-body"><span class="dlabel">✏️ D8的故事</span>
 <div class="dtext" contenteditable="true" data-mk="2026shanxi_d8" data-ph="点这里写点什么：当时的心情、谁说了好笑的话、看到了什么……"></div></div>
-<div class="pgrid"><div class="slot" data-f="p18.jpg"><img src="images/memory/2026-shanxi/p18.jpg" loading="lazy" alt="p18.jpg" onerror="slotEmpty(this)"><b>p18.jpg</b></div></div>
+<div class="pgrid"><div class="slot u" " data-f="p18.jpg"><img src="images/memory/2026-shanxi/p18.jpg" loading="lazy" alt="p18.jpg" onerror="slotEmpty(this)"><b>p18.jpg</b><span class="plus">＋</span></div></div>
 
 </div>
 <div class="exportbar"><button onclick="copyAll()">📋 复制全部文字 · 发Leo固化</button></div>
@@ -141,6 +161,64 @@ function copyAll(){
   var txt=parts.join('\n\n');
   (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){toast('全文已复制，发给Leo固化')}).catch(function(){
     var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();toast('全文已复制');
+  });
+}
+/* ── 页面直传：token只存本机 ── */
+var REPO='Skyjessia/Shanxitravelplan',DIR='images/memory/2026-shanxi/';
+function openSetup(){var p=document.getElementById('setup');p.classList.add('show');document.getElementById('tokin').value=localStorage.getItem('sx_gh_token')||'';}
+function saveTok(){var v=document.getElementById('tokin').value.trim();if(!v){toast('先粘贴token');return;}localStorage.setItem('sx_gh_token',v);document.getElementById('setup').classList.remove('show');toast('口令已存本机，点照片坑即可上传');}
+function haveTok(){return !!localStorage.getItem('sx_gh_token');}
+function pickUpload(sl){
+  if(!haveTok()){toast('先点右上 ⚙️ 设置上传口令');openSetup();return;}
+  var f=sl.getAttribute('data-f');
+  var inp=document.createElement('input');inp.type='file';
+  inp.accept=f.indexOf('.mp4')>-1?'video/*':'image/*';
+  inp.onchange=function(){if(inp.files[0])doUpload(sl,f,inp.files[0]);};
+  inp.click();
+}
+function doUpload(sl,f,file){
+  sl.classList.add('busy');
+  var tok=localStorage.getItem('sx_gh_token');
+  var path=DIR+f;
+  var url='https://api.github.com/repos/'+REPO+'/contents/'+encodeURIComponent(path);
+  var H={'Authorization':'Bearer '+tok,'Accept':'application/vnd.github+json'};
+  var fin=function(msg){sl.classList.remove('busy');toast(msg);};
+  (f.indexOf('.mp4')>-1?fileToB64(file):imgCompress(file)).then(function(b64){
+    return fetch(url,{headers:H}).then(function(g){
+      if(g.status===401){fin('口令无效或过期，点右上⚙️重新设置');throw 'stop';}
+      return g.json();
+    }).then(function(j){
+      var body={message:'回忆录上传 '+f,content:b64};
+      if(j.sha)body.sha=j.sha;
+      return fetch(url,{method:'PUT',headers:Object.assign({'Content-Type':'application/json'},H),body:JSON.stringify(body)});
+    }).then(function(r){
+      if(r.status===200||r.status===201){
+        sl.classList.remove('empty','busy');
+        var img=sl.querySelector('img'),vd=sl.querySelector('video'),bust='?t='+Date.now();
+        if(img&&f.indexOf('.jpg')>-1){img.src=path+bust;img.style.display='block';}
+        else if(vd){vd.src=path+bust;vd.controls=true;vd.style.display='block';}
+        fin('✅ '+f+' 上传成功');
+      }else{fin('上传失败 '+r.status+'（重试或发图给Leo）');}
+    });
+  }).catch(function(e){if(e!=='stop'){sl.classList.remove('busy');fin('出错：'+(e.message||e)+'（可发图给Leo兜底）');}});
+}
+function fileToB64(file){
+  return new Promise(function(res,rej){
+    if(file.size>100*1024*1024){toast('视频超100MB，GitHub拒收，发对话给Leo');rej('stop');return;}
+    var rd=new FileReader();rd.onload=function(){res(rd.result.split(',')[1]);};rd.onerror=rej;rd.readAsDataURL(file);
+  });
+}
+function imgCompress(file){
+  return new Promise(function(res,rej){
+    var img=new Image(),u=URL.createObjectURL(file);
+    img.onload=function(){
+      var w=img.width,h=img.height,mw=1400;
+      if(w>mw){h=Math.round(h*mw/w);w=mw;}
+      var cv=document.createElement('canvas');cv.width=w;cv.height=h;
+      cv.getContext('2d').drawImage(img,0,0,w,h);
+      var b64=cv.toDataURL('image/jpeg',0.62).split(',')[1];
+      URL.revokeObjectURL(u);res(b64);
+    };img.onerror=rej;img.src=u;
   });
 }
 function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},2200)}
