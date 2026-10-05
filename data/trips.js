@@ -1,71 +1,79 @@
 const trips = [
 
-  {
-    id: "2026-shanxi",
+    /* =========================
+       2026 晋陕八日
+    ========================= */
 
-    title: "晋陕八日",
+    {
+        id: "2026-shanxi",
 
-    destination: "山西 · 陕西",
+        title: "晋陕八日",
 
-    year: 2026,
+        destination: "山西 · 陕西",
 
-    startDate: "2026-09-xx",
+        year: 2026,
 
-    endDate: "2026-09-xx",
+        startDate: "2026-09-xx",
 
-    cover: "images/memory/2026-shanxi/p01.jpg",
+        endDate: "2026-09-xx",
 
-    type: "旅行",
+        cover: "images/memory/2026-shanxi/p01.jpg",
 
-    status: "completed",
+        type: "旅行",
 
-    description: "一次关于山西与陕西的八日旅行。",
+        status: "completed",
 
-    /* 公开攻略 */
-    guidePage: "index.html",
+        description: "一次关于山西与陕西的八日旅行。",
 
-    /* 我的私人回忆 */
-    memoryPage: "memory.html",
+        /* 旅游攻略 */
+        guidePage: "index.html",
 
-    places: [
-      "山西",
-      "陕西"
-    ]
-  },
+        /* 我的回忆 */
+        memoryPage: "memory.html",
+
+        places: [
+            "山西",
+            "陕西"
+        ]
+    },
 
 
-  {
-    id: "2020-xibei",
+    /* =========================
+       2020 大西北
+    ========================= */
 
-    title: "大西北",
+    {
+        id: "2020-xibei",
 
-    destination: "甘肃 · 青海 · 新疆",
+        title: "大西北",
 
-    year: 2020,
+        destination: "甘肃 · 青海 · 新疆",
 
-    startDate: "2020-xx-xx",
+        year: 2020,
 
-    endDate: "2020-xx-xx",
+        startDate: "2020-xx-xx",
 
-    cover: "images/memory/2020-xibei/n01.jpg",
+        endDate: "2020-xx-xx",
 
-    type: "旅行",
+        cover: "images/memory/2020-xibei/n01.jpg",
 
-    status: "completed",
+        type: "旅行",
 
-    description: "2020年的大西北之旅。",
+        status: "completed",
 
-    /* 大西北攻略暂时还没有独立页面 */
-    guidePage: "",
+        description: "2020年的大西北之旅。",
 
-    /* 已有的大西北回忆 */
-    memoryPage: "xibei.html",
+        /* 目前还没有独立攻略页面 */
+        guidePage: "",
 
-    places: [
-      "甘肃",
-      "青海",
-      "新疆"
-    ]
-  }
+        /* 已有的大西北回忆 */
+        memoryPage: "xibei.html",
+
+        places: [
+            "甘肃",
+            "青海",
+            "新疆"
+        ]
+    }
 
 ];
