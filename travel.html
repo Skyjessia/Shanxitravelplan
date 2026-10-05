@@ -388,6 +388,25 @@ a {
 }
 
 
+.map-stats {
+
+    display: flex;
+
+    gap: 18px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 18px;
+
+    color: #6f5c46;
+
+    font-size: 15px;
+
+    font-weight: 500;
+
+}
+
+
 .map-box {
 
     min-height: 320px;
@@ -509,6 +528,8 @@ a {
 
 </style>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
 </head>
 
 
@@ -583,29 +604,23 @@ a {
         </h2>
 
         <p class="section-intro">
-            未来这里会成为一张属于我的旅行人生地图。
+            每一个点，都是我真正踩过的土地。
         </p>
 
+        <div
+            class="map-stats"
+            id="mapStats"
+        ></div>
 
-        <div class="map-box">
-
-            <div class="map-box-inner">
-
-                <div class="map-icon">
-                    🗺️
-                </div>
-
-                <div class="map-title">
-                    旅行地图
-                </div>
-
-                <p class="map-description">
-                    地图功能正在建设中
-                </p>
-
-            </div>
-
-        </div>
+        <div
+            id="worldMap"
+            style="
+                height: 520px;
+                border-radius: 14px;
+                box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+                z-index: 0;
+            "
+        ></div>
 
     </section>
 
@@ -869,6 +884,194 @@ else {
         tripGrid.appendChild(card);
 
     });
+
+}
+
+</script>
+
+
+<!-- ========================================
+     点亮地图（Leaflet + 高德中文瓦片）
+     国内🟠琥珀 / 国外🔵冷蓝 / 路过⚪灰虚线
+======================================== -->
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+if (typeof L !== "undefined") {
+
+    /* ----------------------------------------
+       初始化地图
+    ---------------------------------------- */
+
+    const worldMap = L.map("worldMap", {
+
+        scrollWheelZoom: false,
+
+        zoomControl: true
+
+    }).setView([42, 98], 3);
+
+
+    L.tileLayer(
+
+        "https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
+
+        {
+
+            subdomains: ["1", "2", "3", "4"],
+
+            attribution: "© 高德地图",
+
+            maxZoom: 18
+
+        }
+
+    ).addTo(worldMap);
+
+
+    /* ----------------------------------------
+       渲染点亮（用 safePlaces 兜底）
+    ---------------------------------------- */
+
+    let visitedCount = 0;
+
+    const regionSet = new Set();
+
+    const countrySet = new Set();
+
+
+    safePlaces.forEach(place => {
+
+
+        if (
+            place.lat === undefined ||
+            place.lng === undefined
+        ) { return; }
+
+
+        const isPassed =
+            place.status === "passed";
+
+
+        const isAbroad =
+            place.country !== "中国";
+
+
+        let dotColor = "#c08a68";
+
+        let dotLabel = "中国";
+
+
+        if (isPassed) {
+
+            dotColor = "#b8ad9a";
+
+            dotLabel = "路过";
+
+        } else if (isAbroad) {
+
+            dotColor = "#7fa0b8";
+
+            dotLabel = "国外";
+
+        }
+
+
+        const marker = L.circleMarker(
+
+            [place.lat, place.lng],
+
+            {
+
+                radius: 7,
+
+                color: dotColor,
+
+                weight: 2.5,
+
+                fillColor: dotColor,
+
+                fillOpacity: isPassed ? 0.2 : 0.8,
+
+                dashArray: isPassed ? "3 3" : null
+
+            }
+
+        ).addTo(worldMap);
+
+
+        /* 弹出卡片 */
+
+        const sitesText =
+            place.sites && place.sites.length
+                ? `<br><span style="color:#6f5c46">📍 ${place.sites.join(" · ")}</span>`
+                : "";
+
+        const noteText =
+            place.note
+                ? `<br><span style="color:#999;font-size:12px">${place.note}</span>`
+                : "";
+
+
+        marker.bindPopup(`
+
+            <div style="font-size:14px;line-height:1.6">
+
+                <b>${place.city}</b>
+                ${isPassed ? '<span style="color:#b8ad9a">（路过）</span>' : ""}
+
+                <br>
+
+                <span style="color:#999;font-size:12px">
+                    ${place.country} · ${place.region}
+                </span>
+
+                ${sitesText}
+                ${noteText}
+
+            </div>
+
+        `);
+
+
+        /* 统计 */
+
+        if (!isPassed) {
+
+            visitedCount++;
+
+            regionSet.add(place.country + place.region);
+
+            countrySet.add(place.country);
+
+        }
+
+    });
+
+
+    /* ----------------------------------------
+       成就统计行
+    ---------------------------------------- */
+
+    const statsEl =
+        document.getElementById("mapStats");
+
+
+    if (statsEl) {
+
+        statsEl.innerHTML = `
+
+            <span>🌍 ${countrySet.size} 国</span>
+
+            <span>🗺️ ${regionSet.size} 个省级地区</span>
+
+            <span>📍 ${visitedCount} 城点亮</span>
+
+        `;
+
+    }
 
 }
 
