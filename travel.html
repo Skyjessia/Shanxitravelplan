@@ -228,14 +228,71 @@ a {
 
 
 .trip-description {
-
     margin: 0 0 22px;
-
     color: #666;
-
     font-size: 15px;
 }
 
+
+/* ========================================
+   旅行地点
+======================================== */
+
+.trip-places {
+    margin: 0 0 22px;
+    color: #6f5c46;
+    font-size: 14px;
+}
+
+
+.trip-places summary {
+    cursor: pointer;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    user-select: none;
+}
+
+
+.trip-places summary::-webkit-details-marker {
+    display: none;
+}
+
+
+.trip-places summary::after {
+    content: "＋";
+    font-size: 13px;
+    color: #999;
+}
+
+
+.trip-places[open] summary::after {
+    content: "−";
+}
+
+
+.trip-place-list {
+    margin-top: 12px;
+    padding: 12px 15px;
+    background: #f7f4ee;
+    border-radius: 8px;
+}
+
+
+.trip-place-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    color: #666;
+}
+
+
+.place-dot {
+    color: #a58b6b;
+    font-size: 8px;
+}
 
 /* ========================================
    两个入口
@@ -749,15 +806,37 @@ else {
                     ${trip.description || ""}
 
                 </p>
-<div class="trip-places">
+<details class="trip-places">
 
-    📍 ${
-        places.filter(
-            place => place.tripId === trip.id
-        ).length
-    } 个地点
+    <summary>
+        📍 ${
+            places.filter(
+                place => place.tripId === trip.id
+            ).length
+        } 个地点
+    </summary>
 
-</div>
+    <div class="trip-place-list">
+
+        ${
+            places
+                .filter(
+                    place => place.tripId === trip.id
+                )
+                .map(
+                    place => `
+                        <div class="trip-place-item">
+                            <span class="place-dot">●</span>
+                            <span>${place.name}</span>
+                        </div>
+                    `
+                )
+                .join("")
+        }
+
+    </div>
+
+</details>
 
                 <div class="trip-actions">
 
