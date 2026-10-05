@@ -637,12 +637,9 @@ a {
 
 
         <!--
-            这里不再手写旅行卡片。
-
-            卡片会从：
-            data/trips.js
-
-            自动生成。
+            卡片从数据银行自动生成：
+            data/trips/ 目录 · 一个行程一份文件
+            新增旅行见 data/bank.js 顶部 SOP
         -->
 
         <div
@@ -711,8 +708,10 @@ a {
      读取旅行数据
 ======================================== -->
 
-<script src="data/trips.js"></script>
-<script src="data/places.js"></script>
+<script src="data/bank.js"></script>
+<script src="data/trips/2020-xibei.js"></script>
+<script src="data/trips/2026-russia.js"></script>
+<script src="data/trips/2026-shanxi.js"></script>
 
 
 <!-- ========================================
@@ -732,10 +731,10 @@ const tripGrid =
 
 const safePlaces =
     (
-        typeof places !== "undefined" &&
-        Array.isArray(places)
+        typeof PLACE_BANK !== "undefined" &&
+        Array.isArray(PLACE_BANK)
     )
-        ? places
+        ? PLACE_BANK
         : [];
 
 
@@ -744,8 +743,8 @@ const safePlaces =
 ---------------------------------------- */
 
 if (
-    typeof trips === "undefined" ||
-    !Array.isArray(trips)
+    typeof TRIP_BANK === "undefined" ||
+    !Array.isArray(TRIP_BANK)
 ) {
 
     tripGrid.innerHTML = `
@@ -786,7 +785,18 @@ if (
 
 else {
 
-    trips.forEach(trip => {
+    /* 按年份降序排列（新的在前），同年按开始日期降序 */
+
+        TRIP_BANK.sort((a, b) =>
+
+            (b.year - a.year) ||
+
+            String(b.startDate || "").localeCompare(String(a.startDate || ""))
+
+        );
+
+
+        TRIP_BANK.forEach(trip => {
 
 
         /* 创建卡片 */
@@ -1005,11 +1015,11 @@ if (typeof L !== "undefined") {
 
 
     if (
-        typeof trips !== "undefined" &&
-        Array.isArray(trips)
+        typeof TRIP_BANK !== "undefined" &&
+        Array.isArray(TRIP_BANK)
     ) {
 
-        trips.forEach(trip => {
+        TRIP_BANK.forEach(trip => {
 
             yearMap[trip.id] = trip.year;
 
@@ -1193,12 +1203,12 @@ if (typeof L !== "undefined") {
 
 
         if (
-            typeof trips !== "undefined" &&
+            typeof TRIP_BANK !== "undefined" &&
             year !== "all"
         ) {
 
             const n =
-                trips.filter(t => t.year === year).length;
+                TRIP_BANK.filter(t => t.year === year).length;
 
             tripText = `<span>🧭 ${n} 次旅行</span>`;
 
