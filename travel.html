@@ -2,23 +2,32 @@
 <html lang="zh-CN">
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>我的旅行｜人生足迹</title>
 
+
 <style>
 
-/* =========================
+/* ========================================
    基础
-========================= */
+======================================== */
 
 * {
     box-sizing: border-box;
 }
 
+
 body {
+
     margin: 0;
+
     font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -28,68 +37,95 @@ body {
         sans-serif;
 
     background: #f7f5f0;
+
     color: #333;
+
     line-height: 1.7;
 }
 
+
 a {
-    color: inherit;
     text-decoration: none;
+    color: inherit;
 }
 
 
-/* =========================
-   顶部 Hero
-========================= */
+/* ========================================
+   顶部
+======================================== */
 
 .hero {
+
     padding: 70px 20px 55px;
+
     text-align: center;
+
     background: #ebe6dc;
 }
 
+
 .hero h1 {
+
     margin: 0 0 10px;
+
     font-size: 38px;
+
     font-weight: 500;
+
     letter-spacing: 2px;
 }
 
+
 .hero p {
+
     margin: 0;
+
     color: #777;
+
     font-size: 16px;
 }
 
 
-/* =========================
-   页面主体
-========================= */
+/* ========================================
+   主体
+======================================== */
 
 .container {
+
     max-width: 1000px;
+
     margin: 0 auto;
+
     padding: 55px 20px 80px;
 }
 
+
 .section-title {
-    margin-bottom: 10px;
-    font-size: 26px;
+
+    margin: 0 0 10px;
+
+    font-size: 27px;
+
     font-weight: 500;
 }
 
+
 .section-intro {
-    margin-top: 0;
-    margin-bottom: 35px;
+
+    margin: 0 0 35px;
+
     color: #777;
+
+    font-size: 15px;
 }
 
 
-/* =========================
-   旅行卡片
-========================= */
+/* ========================================
+   旅行卡片区域
+======================================== */
 
 .trip-grid {
+
     display: grid;
 
     grid-template-columns:
@@ -98,8 +134,12 @@ a {
     gap: 28px;
 }
 
+
+/* ========================================
+   单张旅行卡片
+======================================== */
+
 .trip-card {
-    display: block;
 
     overflow: hidden;
 
@@ -115,53 +155,70 @@ a {
         box-shadow 0.25s ease;
 }
 
+
 .trip-card:hover {
-    transform: translateY(-5px);
+
+    transform: translateY(-4px);
 
     box-shadow:
         0 14px 35px rgba(0, 0, 0, 0.10);
 }
 
 
-/* =========================
-   图片
-========================= */
+/* ========================================
+   旅行图片
+======================================== */
 
 .trip-image {
+
+    width: 100%;
+
     height: 260px;
 
+    background-color: #ddd;
+
     background-position: center;
+
     background-size: cover;
 
-    background-color: #ddd;
+    background-repeat: no-repeat;
 }
 
 
-/* =========================
-   卡片文字
-========================= */
+/* ========================================
+   卡片内容
+======================================== */
 
 .trip-content {
-    padding: 25px 25px 28px;
+
+    padding: 25px 25px 27px;
 }
 
+
 .trip-year {
+
     margin-bottom: 5px;
 
     color: #999;
 
     font-size: 14px;
+
     letter-spacing: 1px;
 }
 
+
 .trip-content h2 {
+
     margin: 0 0 6px;
 
-    font-size: 25px;
+    font-size: 26px;
+
     font-weight: 500;
 }
 
+
 .trip-destination {
+
     margin: 0 0 12px;
 
     color: #777;
@@ -169,37 +226,119 @@ a {
     font-size: 15px;
 }
 
+
 .trip-description {
-    margin: 0 0 18px;
+
+    margin: 0 0 22px;
 
     color: #666;
 
     font-size: 15px;
 }
 
-.trip-link {
-    color: #8b7355;
+
+/* ========================================
+   两个入口
+======================================== */
+
+.trip-actions {
+
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+
+.trip-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 42px;
+
+    padding: 8px 15px;
+
+    border-radius: 8px;
 
     font-size: 14px;
 
-    letter-spacing: 0.5px;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
 
-/* =========================
+/* 攻略 */
+
+.guide-button {
+
+    background: #8b7355;
+
+    color: #fff;
+}
+
+
+.guide-button:hover {
+
+    background: #756044;
+
+    transform: translateY(-1px);
+}
+
+
+/* 回忆 */
+
+.memory-button {
+
+    background: #eee9df;
+
+    color: #6f5c46;
+}
+
+
+.memory-button:hover {
+
+    background: #e3dccf;
+
+    transform: translateY(-1px);
+}
+
+
+/* 没有攻略 */
+
+.disabled-button {
+
+    background: #f1f1f1;
+
+    color: #aaa;
+
+    cursor: default;
+}
+
+
+/* ========================================
    地图区域
-========================= */
+======================================== */
 
 .map-section {
-    margin-top: 70px;
+
+    margin-top: 75px;
 }
 
+
 .map-box {
+
     min-height: 320px;
 
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     background: #e9e5dc;
@@ -211,38 +350,47 @@ a {
     text-align: center;
 }
 
+
 .map-box-inner {
+
     padding: 30px;
 }
 
+
 .map-icon {
+
     margin-bottom: 10px;
 
-    font-size: 40px;
+    font-size: 42px;
 }
+
 
 .map-title {
+
     margin-bottom: 5px;
 
-    font-size: 20px;
-
     color: #777;
+
+    font-size: 20px;
 }
+
 
 .map-description {
+
     margin: 0;
 
-    font-size: 14px;
-
     color: #999;
+
+    font-size: 14px;
 }
 
 
-/* =========================
-   底部
-========================= */
+/* ========================================
+   页脚
+======================================== */
 
 .footer {
+
     padding: 35px 20px;
 
     text-align: center;
@@ -253,44 +401,66 @@ a {
 }
 
 
-/* =========================
-   手机适配
-========================= */
+/* ========================================
+   手机
+======================================== */
 
 @media (max-width: 700px) {
 
     .hero {
+
         padding: 55px 20px 45px;
     }
 
+
     .hero h1 {
+
         font-size: 30px;
     }
 
+
     .container {
+
         padding-top: 40px;
     }
 
+
     .trip-grid {
+
         grid-template-columns: 1fr;
     }
 
+
     .trip-image {
+
         height: 230px;
+    }
+
+
+    .trip-actions {
+
+        flex-direction: column;
+    }
+
+
+    .trip-button {
+
+        width: 100%;
     }
 
 }
 
 </style>
+
 </head>
 
 
 <body>
 
 
-<!-- =========================
+<!-- ========================================
      顶部
-========================= -->
+======================================== -->
 
 <header class="hero">
 
@@ -304,12 +474,16 @@ a {
 
 
 
-<!-- =========================
+<!-- ========================================
      主体
-========================= -->
+======================================== -->
 
 <main class="container">
 
+
+    <!-- ====================================
+         旅行足迹
+    ==================================== -->
 
     <section>
 
@@ -324,22 +498,26 @@ a {
 
 
         <!--
-            旅行卡片会由 data/trips.js
-            自动生成
+            这里不再手写旅行卡片。
+
+            卡片会从：
+            data/trips.js
+
+            自动生成。
         -->
 
         <div
             class="trip-grid"
-            id="tripGrid">
-        </div>
+            id="tripGrid"
+        ></div>
 
     </section>
 
 
 
-    <!-- =========================
-         地图
-    ========================= -->
+    <!-- ====================================
+         我的旅行地图
+    ==================================== -->
 
     <section class="map-section">
 
@@ -379,9 +557,9 @@ a {
 
 
 
-<!-- =========================
+<!-- ========================================
      页脚
-========================= -->
+======================================== -->
 
 <footer class="footer">
 
@@ -391,23 +569,17 @@ a {
 
 
 
-<!-- =====================================================
-     旅行数据
-     
-     非常重要：
-     这个文件必须存在：
-     
-     data/trips.js
-     
-===================================================== -->
+<!-- ========================================
+     读取旅行数据
+======================================== -->
 
 <script src="data/trips.js"></script>
 
 
 
-<!-- =====================================================
+<!-- ========================================
      自动生成旅行卡片
-===================================================== -->
+======================================== -->
 
 <script>
 
@@ -415,9 +587,9 @@ const tripGrid =
     document.getElementById("tripGrid");
 
 
-/*
- * 检查旅行数据是否成功加载
- */
+/* ----------------------------------------
+   检查数据是否成功加载
+---------------------------------------- */
 
 if (
     typeof trips === "undefined" ||
@@ -437,17 +609,17 @@ if (
 
             暂时没有读取到旅行数据。
 
-            <br>
+            <br><br>
 
             请检查：
 
-            <br><br>
+            <br>
 
             <strong>
                 data/trips.js
             </strong>
 
-            是否已经创建。
+            是否存在。
 
         </div>
 
@@ -456,31 +628,86 @@ if (
 }
 
 
-/*
- * 自动生成旅行卡片
- */
+/* ----------------------------------------
+   自动生成旅行卡片
+---------------------------------------- */
 
 else {
 
     trips.forEach(trip => {
 
 
+        /* 创建卡片 */
+
         const card =
-            document.createElement("a");
+            document.createElement("article");
 
 
         card.className =
             "trip-card";
 
 
-        /*
-         * 点击卡片以后
-         * 进入对应的回忆页面
-         */
+        /* --------------------------------
+           生成攻略按钮
+        -------------------------------- */
 
-        card.href =
-            trip.memoryPage || "#";
+        let guideButton = "";
 
+
+        if (trip.guidePage) {
+
+            guideButton = `
+
+                <a
+                    class="trip-button guide-button"
+                    href="${trip.guidePage}"
+                >
+                    📖 旅游攻略
+                </a>
+
+            `;
+
+        } else {
+
+            guideButton = `
+
+                <span
+                    class="trip-button disabled-button"
+                >
+                    📖 攻略整理中
+                </span>
+
+            `;
+
+        }
+
+
+        /* --------------------------------
+           生成回忆按钮
+        -------------------------------- */
+
+        let memoryButton = "";
+
+
+        if (trip.memoryPage) {
+
+            memoryButton = `
+
+                <a
+                    class="trip-button memory-button"
+                    href="${trip.memoryPage}"
+                >
+                    🔐 我的回忆
+                </a>
+
+            `;
+
+        }
+
+
+        /* --------------------------------
+           生成整个卡片
+        -------------------------------- */
 
         card.innerHTML = `
 
@@ -490,8 +717,7 @@ else {
                     background-image:
                     url('${trip.cover}');
                 "
-            >
-            </div>
+            ></div>
 
 
             <div class="trip-content">
@@ -525,9 +751,11 @@ else {
                 </p>
 
 
-                <div class="trip-link">
+                <div class="trip-actions">
 
-                    查看这次旅行 →
+                    ${guideButton}
+
+                    ${memoryButton}
 
                 </div>
 
@@ -549,4 +777,3 @@ else {
 </body>
 
 </html>
-```
