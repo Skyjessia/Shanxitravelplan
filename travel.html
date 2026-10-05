@@ -645,6 +645,20 @@ const tripGrid =
 
 
 /* ----------------------------------------
+   places 安全兜底：
+   places.js 加载失败时不让页面崩掉
+---------------------------------------- */
+
+const safePlaces =
+    (
+        typeof places !== "undefined" &&
+        Array.isArray(places)
+    )
+        ? places
+        : [];
+
+
+/* ----------------------------------------
    检查数据是否成功加载
 ---------------------------------------- */
 
@@ -810,7 +824,7 @@ else {
 
     <summary>
         📍 ${
-            places.filter(
+            safePlaces.filter(
                 place => place.tripId === trip.id
             ).length
         } 个地点
@@ -819,7 +833,7 @@ else {
     <div class="trip-place-list">
 
         ${
-            places
+            safePlaces
                 .filter(
                     place => place.tripId === trip.id
                 )
