@@ -7,6 +7,7 @@ const places = [
     province: "山西",
     country: "中国",
     year: 2026,
+    order: 1,
     lat: 37.8706,
     lng: 112.5489
   },
@@ -18,6 +19,7 @@ const places = [
     province: "山西",
     country: "中国",
     year: 2026,
+    order: 2,
     lat: 37.1894,
     lng: 112.1763
   },
@@ -29,6 +31,7 @@ const places = [
     province: "山西",
     country: "中国",
     year: 2026,
+    order: 3,
     lat: 39.0145,
     lng: 113.5902
   },
@@ -40,6 +43,7 @@ const places = [
     province: "山西 · 陕西",
     country: "中国",
     year: 2026,
+    order: 4,
     lat: 36.1489,
     lng: 110.4550
   },
@@ -51,6 +55,7 @@ const places = [
     province: "陕西",
     country: "中国",
     year: 2026,
+    order: 5,
     lat: 34.3416,
     lng: 108.9398
   },
@@ -61,6 +66,7 @@ const places = [
     name: "华山",
     province: "陕西",
     country: "中国",
+    order: 6,
     year: 2026,
     lat: 34.4753,
     lng: 110.0844
