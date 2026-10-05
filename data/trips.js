@@ -1,4 +1,5 @@
 const trips = [
+
   {
     id: "2026-shanxi",
 
@@ -20,8 +21,10 @@ const trips = [
 
     description: "一次关于山西与陕西的八日旅行。",
 
-    publicPage: "index.html",
+    /* 公开攻略 */
+    guidePage: "index.html",
 
+    /* 我的私人回忆 */
     memoryPage: "memory.html",
 
     places: [
@@ -29,6 +32,7 @@ const trips = [
       "陕西"
     ]
   },
+
 
   {
     id: "2020-xibei",
@@ -43,7 +47,7 @@ const trips = [
 
     endDate: "2020-xx-xx",
 
-    cover: "images/memory/2020-xibei/n05.jpg",
+    cover: "images/memory/2020-xibei/n01.jpg",
 
     type: "旅行",
 
@@ -51,8 +55,10 @@ const trips = [
 
     description: "2020年的大西北之旅。",
 
-    publicPage: "index.html",
+    /* 大西北攻略暂时还没有独立页面 */
+    guidePage: "",
 
+    /* 已有的大西北回忆 */
     memoryPage: "xibei.html",
 
     places: [
@@ -61,4 +67,5 @@ const trips = [
       "新疆"
     ]
   }
+
 ];
