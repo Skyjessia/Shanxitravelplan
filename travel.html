@@ -983,9 +983,21 @@ if (typeof L !== "undefined") {
 
     const worldMap = L.map("worldMap", {
 
-        scrollWheelZoom: false,
+        scrollWheelZoom: true,
 
-        zoomControl: true
+        zoomControl: true,
+
+        /* —— 缩放性能优化 —— */
+
+        zoomSnap: 0.25,
+
+        zoomDelta: 0.5,
+
+        wheelPxPerZoomLevel: 140,
+
+        updateWhenIdle: false,
+
+        updateWhenZooming: false
 
     }).setView([42, 98], 3);
 
@@ -1000,7 +1012,11 @@ if (typeof L !== "undefined") {
 
             attribution: "© 高德地图",
 
-            maxZoom: 18
+            maxZoom: 18,
+
+            /* —— 瓦片缓存优化：多缓存周边瓦片，往返缩放直接复用 —— */
+
+            keepBuffer: 4
 
         }
 
