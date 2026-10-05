@@ -407,6 +407,67 @@ a {
 }
 
 
+.year-filter {
+
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 18px;
+
+}
+
+
+.year-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    min-height: 36px;
+
+    padding: 6px 16px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #eee9df;
+
+    color: #6f5c46;
+
+    font-size: 14px;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.year-btn:hover {
+
+    background: #e3dccf;
+
+    transform: translateY(-1px);
+
+}
+
+
+.year-btn.active {
+
+    background: #8b7355;
+
+    color: #fff;
+
+}
+
+
 .map-box {
 
     min-height: 320px;
@@ -610,6 +671,11 @@ a {
         <div
             class="map-stats"
             id="mapStats"
+        ></div>
+
+        <div
+            class="year-filter"
+            id="yearFilter"
         ></div>
 
         <div
@@ -932,14 +998,31 @@ if (typeof L !== "undefined") {
 
 
     /* ----------------------------------------
+       tripId → year 映射（年份维度）
+    ---------------------------------------- */
+
+    const yearMap = {};
+
+
+    if (
+        typeof trips !== "undefined" &&
+        Array.isArray(trips)
+    ) {
+
+        trips.forEach(trip => {
+
+            yearMap[trip.id] = trip.year;
+
+        });
+
+    }
+
+
+    /* ----------------------------------------
        渲染点亮（用 safePlaces 兜底）
     ---------------------------------------- */
 
-    let visitedCount = 0;
-
-    const regionSet = new Set();
-
-    const countrySet = new Set();
+    const allMarkers = [];
 
 
     safePlaces.forEach(place => {
@@ -961,20 +1044,13 @@ if (typeof L !== "undefined") {
 
         let dotColor = "#c08a68";
 
-        let dotLabel = "中国";
-
-
         if (isPassed) {
 
             dotColor = "#b8ad9a";
 
-            dotLabel = "路过";
-
         } else if (isAbroad) {
 
             dotColor = "#7fa0b8";
-
-            dotLabel = "国外";
 
         }
 
@@ -1014,6 +1090,11 @@ if (typeof L !== "undefined") {
                 ? `<br><span style="color:#999;font-size:12px">${place.note}</span>`
                 : "";
 
+        const yearText =
+            yearMap[place.tripId]
+                ? `<span style="color:#999;font-size:12px"> · ${yearMap[place.tripId]}年</span>`
+                : "";
+
 
         marker.bindPopup(`
 
@@ -1025,7 +1106,7 @@ if (typeof L !== "undefined") {
                 <br>
 
                 <span style="color:#999;font-size:12px">
-                    ${place.country} · ${place.region}
+                    ${place.country} · ${place.region}${yearText}
                 </span>
 
                 ${sitesText}
@@ -1036,40 +1117,251 @@ if (typeof L !== "undefined") {
         `);
 
 
-        /* 统计 */
+        /* 收集 marker（年份筛选用） */
 
-        if (!isPassed) {
+        allMarkers.push({
 
-            visitedCount++;
+            marker: marker,
 
-            regionSet.add(place.country + place.region);
+            place: place,
 
-            countrySet.add(place.country);
+            year: yearMap[place.tripId],
 
-        }
+            activeStyle: {
+
+                radius: 7,
+
+                color: dotColor,
+
+                weight: 2.5,
+
+                fillColor: dotColor,
+
+                fillOpacity: isPassed ? 0.2 : 0.8,
+
+                dashArray: isPassed ? "3 3" : null
+
+            },
+
+            dimStyle: {
+
+                radius: 3.5,
+
+                color: "#d8d2c4",
+
+                weight: 1,
+
+                fillColor: "#d8d2c4",
+
+                fillOpacity: 0.15,
+
+                dashArray: null
+
+            }
+
+        });
 
     });
 
 
     /* ----------------------------------------
-       成就统计行
+       成就统计（按年 / 全部）
     ---------------------------------------- */
 
-    const statsEl =
-        document.getElementById("mapStats");
+    function updateStats(year) {
+
+        const list = allMarkers.filter(m =>
+            year === "all" || m.year === year
+        );
 
 
-    if (statsEl) {
+        const lit = list.filter(m =>
+            m.place.status !== "passed"
+        );
 
-        statsEl.innerHTML = `
 
-            <span>🌍 ${countrySet.size} 国</span>
+        const regions = new Set(
+            lit.map(m => m.place.country + m.place.region)
+        );
 
-            <span>🗺️ ${regionSet.size} 个省级地区</span>
+        const countries = new Set(
+            lit.map(m => m.place.country)
+        );
 
-            <span>📍 ${visitedCount} 城点亮</span>
 
-        `;
+        let tripText = "";
+
+
+        if (
+            typeof trips !== "undefined" &&
+            year !== "all"
+        ) {
+
+            const n =
+                trips.filter(t => t.year === year).length;
+
+            tripText = `<span>🧭 ${n} 次旅行</span>`;
+
+        }
+
+
+        const label =
+            year === "all" ? "全部足迹" : `${year} 年`;
+
+
+        const statsEl =
+            document.getElementById("mapStats");
+
+
+        if (statsEl) {
+
+            statsEl.innerHTML = `
+
+                <span><b>${label}</b></span>
+
+                ${tripText}
+
+                <span>🌍 ${countries.size} 国</span>
+
+                <span>🗺️ ${regions.size} 个省级地区</span>
+
+                <span>📍 ${lit.length} 城点亮</span>
+
+            `;
+
+        }
+
+    }
+
+
+    /* ----------------------------------------
+       年份筛选条 + 飞行聚焦
+    ---------------------------------------- */
+
+    const filterEl =
+        document.getElementById("yearFilter");
+
+
+    if (filterEl) {
+
+        const years =
+            [...new Set(
+                Object.values(yearMap)
+            )].sort((a, b) => b - a);
+
+
+        const buttons = [];
+
+
+        function makeButton(label, value) {
+
+            const btn =
+                document.createElement("button");
+
+            btn.className = "year-btn";
+
+            btn.textContent = label;
+
+            btn.dataset.value = value;
+
+            filterEl.appendChild(btn);
+
+            buttons.push(btn);
+
+            return btn;
+
+        }
+
+
+        const btnAll =
+            makeButton("全部足迹", "all");
+
+
+        const yearButtons =
+            years.map(y => makeButton(`${y}`, y));
+
+
+        function select(value) {
+
+            const bounds = [];
+
+
+            allMarkers.forEach(m => {
+
+                if (
+                    value === "all" ||
+                    m.year === value
+                ) {
+
+                    m.marker.setStyle(m.activeStyle);
+
+                    bounds.push(
+                        [m.place.lat, m.place.lng]
+                    );
+
+                } else {
+
+                    m.marker.setStyle(m.dimStyle);
+
+                }
+
+            });
+
+
+            buttons.forEach(b => {
+
+                b.classList.toggle(
+                    "active",
+                    b.dataset.value === String(value)
+                );
+
+            });
+
+
+            updateStats(value);
+
+
+            if (
+                value !== "all" &&
+                bounds.length
+            ) {
+
+                worldMap.flyToBounds(
+                    L.latLngBounds(bounds).pad(0.45),
+                    { duration: 1.2 }
+                );
+
+            } else {
+
+                worldMap.flyTo([42, 98], 3, {
+                    duration: 1.2
+                });
+
+            }
+
+        }
+
+
+        btnAll.addEventListener(
+            "click", () => select("all")
+        );
+
+        yearButtons.forEach((btn, i) => {
+
+            btn.addEventListener(
+                "click", () => select(years[i])
+            );
+
+        });
+
+
+        /* 默认选中：全部 */
+
+        select("all");
+
+    } else {
+
+        updateStats("all");
 
     }
 
