@@ -1,0 +1,269 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>我的旅行｜人生足迹</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family:
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            "PingFang SC",
+            "Microsoft YaHei",
+            sans-serif;
+        background: #f7f5f0;
+        color: #333;
+        line-height: 1.7;
+    }
+
+    .hero {
+        padding: 70px 20px 55px;
+        text-align: center;
+        background: #ebe6dc;
+    }
+
+    .hero h1 {
+        margin: 0 0 10px;
+        font-size: 38px;
+        font-weight: 500;
+        letter-spacing: 2px;
+    }
+
+    .hero p {
+        margin: 0;
+        color: #777;
+        font-size: 16px;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 45px 20px 80px;
+    }
+
+    .section-title {
+        margin: 0 0 25px;
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    .intro {
+        margin-bottom: 50px;
+        color: #666;
+        max-width: 720px;
+    }
+
+    .trips {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+    }
+
+    .trip-card {
+        display: block;
+        background: white;
+        border-radius: 14px;
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .trip-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.10);
+    }
+
+    .trip-image {
+        height: 190px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .trip-content {
+        padding: 22px;
+    }
+
+    .year {
+        font-size: 13px;
+        color: #999;
+        letter-spacing: 1px;
+        margin-bottom: 5px;
+    }
+
+    .trip-title {
+        margin: 0 0 8px;
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    .trip-place {
+        color: #777;
+        font-size: 14px;
+        margin-bottom: 14px;
+    }
+
+    .trip-description {
+        color: #666;
+        font-size: 14px;
+        margin: 0;
+    }
+
+    .future {
+        margin-top: 60px;
+        padding: 35px;
+        background: white;
+        border-radius: 14px;
+        text-align: center;
+        border: 1px dashed #ccc;
+    }
+
+    .future h2 {
+        margin-top: 0;
+        font-weight: 500;
+    }
+
+    .future p {
+        color: #888;
+        margin-bottom: 0;
+    }
+
+    footer {
+        text-align: center;
+        padding: 30px 20px;
+        color: #aaa;
+        font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+        .hero {
+            padding: 50px 20px 40px;
+        }
+
+        .hero h1 {
+            font-size: 30px;
+        }
+
+        .container {
+            padding-top: 35px;
+        }
+
+        .trip-image {
+            height: 170px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+    <h1>我的旅行</h1>
+    <p>走过的地方，留下的故事。</p>
+</header>
+
+<main class="container">
+
+    <section>
+        <h2 class="section-title">我的旅行足迹</h2>
+
+        <p class="intro">
+            这里记录我这些年走过的地方。
+            攻略可以分享给别人，回忆则留给未来的自己。
+            随着时间一点一点整理，这里会慢慢成为属于我的旅行地图。
+        </p>
+
+        <div class="trips">
+
+            <!-- 2026 晋陕八日 -->
+            <a class="trip-card"
+               href="memory.html">
+
+                <div class="trip-image"
+                     style="background-image:
+                     url('images/p01.jpg');">
+                </div>
+
+                <div class="trip-content">
+                    <div class="year">2026</div>
+
+                    <h3 class="trip-title">
+                        晋陕八日
+                    </h3>
+
+                    <div class="trip-place">
+                        山西 · 陕西
+                    </div>
+
+                    <p class="trip-description">
+                        太原、五台山、大同、应县、平遥，
+                        以及一路向西南延伸的旅行。
+                    </p>
+                </div>
+
+            </a>
+
+
+            <!-- 2020 大西北 -->
+            <a class="trip-card"
+               href="xibei.html">
+
+                <div class="trip-image"
+                     style="background-image:
+                     url('images/xibei.jpg');">
+                </div>
+
+                <div class="trip-content">
+                    <div class="year">2020</div>
+
+                    <h3 class="trip-title">
+                        大西北
+                    </h3>
+
+                    <div class="trip-place">
+                        青海 · 甘肃 · 西北
+                    </div>
+
+                    <p class="trip-description">
+                        那一次向西走了很远，
+                        留下了一段值得重新整理的记忆。
+                    </p>
+                </div>
+
+            </a>
+
+        </div>
+    </section>
+
+
+    <section class="future">
+
+        <h2>🗺️ 我的旅行地图</h2>
+
+        <p>
+            这里以后会点亮我走过的地方。
+            每一个地点，都是人生中的一个坐标。
+        </p>
+
+    </section>
+
+</main>
+
+<footer>
+    我的旅行 · 一点一点整理，一点一点留下
+</footer>
+
+</body>
+</html>
+```
