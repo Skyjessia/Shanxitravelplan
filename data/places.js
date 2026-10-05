@@ -1,4 +1,3 @@
-```javascript
 const places = [
 
   {
@@ -68,4 +67,4 @@ const places = [
   }
 
 ];
-```
+
