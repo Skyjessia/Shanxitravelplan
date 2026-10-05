@@ -1,4 +1,4 @@
-cconst places = [
+const places = [
 
     {
         id: "taiyuan",
