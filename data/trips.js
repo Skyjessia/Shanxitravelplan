@@ -47,13 +47,13 @@ const trips = [
 
         title: "大西北",
 
-        destination: "甘肃 · 青海 · 新疆",
+        destination: "青海 · 甘肃",
 
         year: 2020,
 
-        startDate: "2020-xx-xx",
+        startDate: "2020-08-24",
 
-        endDate: "2020-xx-xx",
+        endDate: "2020-09-02",
 
         cover: "images/memory/2020-xibei/n01.jpg",
 
@@ -70,9 +70,8 @@ const trips = [
         memoryPage: "xibei.html",
 
         places: [
-            "甘肃",
             "青海",
-            "新疆"
+            "甘肃"
         ]
     }
 
