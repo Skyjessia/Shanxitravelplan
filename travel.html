@@ -749,7 +749,15 @@ else {
                     ${trip.description || ""}
 
                 </p>
+<div class="trip-places">
 
+    📍 ${
+        places.filter(
+            place => place.tripId === trip.id
+        ).length
+    } 个地点
+
+</div>
 
                 <div class="trip-actions">
 
